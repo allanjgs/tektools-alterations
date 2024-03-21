@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
+.adminTop {
+  margin-top: 50px !important;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.adminTop .Tabs {
+  width: 400px;
+  padding-top: 16px!important;
+  margin-left: 5%;
+  padding:0px 16px;
+  border-radius: 12px;
+  background-color: #242424;
+  margin-right: 40px;
+}
+.adminTop .Tabs p {
+  color: #c1c1c1;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  font-family: "Nunito Sans", sans-serif;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+.adminTop .Tabs ul {
+  margin-bottom: 20px;
+}
+
+.adminTop .Tabs ul a{
+  padding: 8px;
+  border-radius: 12px;
+}
+.adminTop .Tabs ul li,
+.adminTop .Tabs ul a {
+  color: #c1c1c1;
+  list-style-type: none;
+  margin-bottom: 0px;
+  font-family: "Nunito Sans", sans-serif;
+  line-height: 26px;
+  font-weight: 300;
+  width: 100%;
+  margin-bottom: 5px;
+
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+}
+.adminTop .Tabs ul .active li{
+    color: #9945ff!important;
+    border-left: 2px solid #9945ff!important;
+}
+.adminTop .Tabs ul li svg,
+.adminTop .Tabs ul a svg {
+  margin-right: 10px;
+}
+.adminTop .Tabs ul li:hover,
+.adminTop .Tabs ul a:hover {
+  color: #9945ff;
+}
+.adminTop .Tabs ul li:nth-last-child(1) {
+  margin-bottom: 0px;
+}
+
+/* tab ::content section here ======== */
+.adminTop .tabsContent {
+  width: 100%;
+  /* border: 1px solid blue; */
+  padding: 0px 3% 0px 0px;
+  color: red;
+}

@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+/* @font-face {
+  font-family: omegle2;
+  src: url(./../../fonts/omg2.ttf);
+} */
+@font-face {
+  font-family: tekros;
+  src: url(./../../fonts/Tekros-ExtraBold.ttf);
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  position: relative;
+  height: 430px;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+.row .left {
+  width: 45%;
+  position: absolute;
+  margin: 35px 0px;
+  right: -50px;
+  left: 0px;
+  background: #1e1e1e;
+  padding: 14px;
+  z-index: 999;
+}
+
+.row .left .tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center!important;
+  cursor: pointer;
+  padding:  2px;
+  margin-bottom: 0px;
+}
+.row .left .tab p{
+  margin-bottom: 0px;
+}
+.row .left .tab:hover {
+  background-color: #242424;
+}
+.row .left .findActive {
+  background-color: #242424;
+}
+.row .left .tab:nth-child(5) {
+  margin-bottom: 0px !important;
+}
+.row .left .tab .content img {
+  width: 40px;
+  height: 40px;
+}
+.row .left .tab .content {
+  display: flex;
+  align-items: center;
+
+}
+.row .left .tab .content p {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 24px;
+  color: #ffffff;
+  margin-left: 16px;
+}
+.row .right {
+  width: 58%;
+  position: absolute;
+  right: 0px;
+  height: 320px;
+  padding: 49px 50px;
+  background: #242424;
+  border: 1px solid #505050;
+  border-radius: 17px;
+  padding-left: 100px !important;
+}
+.row .right .tabContent {
+  display: none;
+  transition: 0.3s;
+  
+
+}
+.row .right .findActiveContent {
+  display: block;
+}
+
+.row .right h1 {
+  background-image: linear-gradient(
+    92.96deg,
+    #9945ff 0.58%,
+    #1bf5a0 98.97%
+  ) !important;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  font-family: tekros !important;
+  margin: auto;
+}
+.row .right .tabContent h3 {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 24px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.row .right .tabContent p {
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 24px;
+  /* or 141% */
+  opacity: 0.7;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 1170px) {
+  .row {
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .row .left {
+    width: 100%;
+    position: static;
+  }
+  .row .right {
+    width: 100%;
+    position: static;
+    padding-right: 100px !important;
+    height: auto;
+  }
+  .row .right h1 {
+    font-size: 45px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .row .right {
+    padding: 49px !important;
+  }
+}
+@media screen and (max-width: 800px) {
+  .row .right h1 {
+    font-size: 35px;
+  }
+}

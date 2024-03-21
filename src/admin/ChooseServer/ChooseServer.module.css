@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@font-face {
+  font-family: omegle;
+  src: url(./../../../src/fonts/omg2.ttf);
+}
+.ServerTop {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ServerTop .inner {
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  background: #242424;
+}
+.ServerTop .inner h1 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 70px !important;
+  text-align: center;
+  margin-bottom: 10px;
+  background-image: linear-gradient(
+    92.96deg,
+    #9945ff 0.58%,
+    #1bf5a0 98.97%
+  ) !important;
+  font-size: 50px;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: omegle !important;
+}
+.ServerTop .inner .row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.ServerTop .inner .row a {
+  width: 30%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  text-decoration: none;
+  background: #000;
+  color: #fff;
+  margin-bottom: 20px;
+  border-radius: 12px;
+}
+.ServerTop .inner .backHome {
+  max-width: 300px;
+  width: 100%;
+  height: 49px;
+  margin: auto;
+  text-decoration: none;
+  margin-top: 30px;
+  display: block;
+  border: none;
+  background: linear-gradient(94.61deg, #9945ff 3.7%, #1bf5a0 100%);
+  border-radius: 40px;
+  cursor: pointer;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 19px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width:600px){
+    .ServerTop .inner .row a{
+        width: 48%;
+    }
+}

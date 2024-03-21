@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@font-face {
+  font-family: omegle;
+  src: url(./../../fonts/omg2.ttf);
+}
+.moreFeature {
+  width: calc( 90% - 104px);
+  margin: 100px auto 100px auto;
+  background: #242424;
+  border-radius: 36px;
+
+  padding: 27px 52px;
+}
+.moreFeature .row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+
+
+}
+.moreFeature  h1{
+  margin-bottom: 40px;
+}
+.moreFeature .row .cardTop{
+    margin-bottom: 40px;
+
+}
+.moreFeature .row .cardTop {
+  width: 30%;
+}
+
+.moreFeature .row .cardTop h3 {
+font-family: "Lato";
+font-style: normal;
+font-weight: 600;
+font-size: 25px;
+line-height: 49px;
+margin-bottom: 10px;
+font-family: "Lato", sans-serif;
+color: #ffffff;
+
+}
+.moreFeature .row .cardTop p {
+font-family: "Lato", sans-serif;
+font-style: normal;
+font-weight: 300;
+font-size: 17px;
+line-height: 20px;
+color: #ffffff;
+margin-top: -10px;
+opacity: 0.7;
+}
+.moreFeature h1 {
+  color: #fff;
+  margin-top: 0px;
+  font-size: 60px;
+}
+
+
+@media screen and (max-width:1170px){
+.moreFeature .row .cardTop{
+  width: 48%;
+}
+}
+
+@media screen and (max-width:800px){
+.moreFeature .row .cardTop{
+  width: 100%;
+}
+.moreFeature {
+  width:90%;
+  margin: 100px auto 100px auto;
+  background: #242424;
+  border-radius: 36px;
+
+  padding: 20px;
+}
+.moreFeature h1 {
+  font-size: 50px;
+}
+}

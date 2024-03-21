@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@font-face {
+  font-family: omegle2;
+  src: url(./../../fonts/OMEGLE.ttf);
+}
+.heroTop {
+  width: 100%;
+  padding-top: 168px;
+  text-align: center;
+  padding-bottom: 158px;
+  position: relative;
+}
+.heroTop .imgLeft {
+  position: absolute;
+  top: 400px;
+  left: -50px;
+  z-index: -1;
+}
+.heroTop .imgRight {
+  position: absolute;
+  top: 100px;
+  right: -50px;
+  z-index: -1;
+}
+.heroTop h1 {
+  font-family: "Lato", sans-serif;
+  /* font-family: "OMEGLE", sans-serif; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 82px;
+  line-height: 100px;
+  /* identical to box height */
+  color: #fff;
+  margin-bottom: 5px;
+}
+.heroTop h1 span {
+  background-image: linear-gradient(
+    92.96deg,
+    #9945ff 0.58%,
+    #1bf5a0 98.97%
+  ) !important;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: omegle2 !important;
+}
+.heroTop p {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 13px;
+}
+.heroTop .btns a {
+  text-decoration: none;
+}
+.heroTop .btns .loginBtn {
+  width: 215px;
+  height: 58px;
+  background: linear-gradient(94.61deg, #9945ff 3.7%, #1bf5a0 100%);
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  color: #ffffff;
+  font-family: "Lato", sans-serif;
+  margin-right: 30px;
+}
+.heroTop .btns .featureBtn {
+  background: linear-gradient(to right, #9945ff, #1bf5a0);
+  border-radius: 40px;
+  color: #122dff;
+  display: inline-block;
+  font-size: 19px;
+  padding: 1px;
+  text-decoration: none;
+  border: none;
+  background-color: none;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 23px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-left: 30px;
+}
+.heroTop .btns .featureBtn span {
+  background: #000101;
+  display: block;
+  padding: 0.89em 3em;
+  border-radius: 40px;
+}
+@media screen and (max-width: 1200px) {
+  .heroTop h1 {
+    font-size: 60px !important;
+    line-height: 70px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .heroTop .imgLeft,
+  .heroTop .imgRight {
+    display: none;
+  }
+  .heroTop h1 {
+    font-size: 35px !important;
+    line-height: 40px;
+  }
+  .heroTop p {
+    font-size: 17px;
+  }
+  .heroTop {
+    width: 90%;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 560px) {
+  .heroTop .btns {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+  }
+  .heroTop .btns .loginBtn {
+    margin-right: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .heroTop .btns .featureBtn {
+    margin-left: 0px;
+  }
+}

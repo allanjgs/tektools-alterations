@@ -1,0 +1,61 @@
+.FormData p,
+.result {
+  color: #c1c1c1;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  font-family: "Nunito Sans", sans-serif;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+.FormData .row {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.FormData .row span {
+  width: 48%;
+}
+.FormData .row span select,
+.FormData .row span input,
+.FormData textarea {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: #242424;
+  color: #fff;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 12px;
+}
+.FormData textarea {
+  height: 230px;
+  resize: none;
+}
+.FormData label {
+  color: #fff;
+}
+.FormData button {
+  padding: 15px 45px;
+  border-radius: 12px;
+  background-color: #9945ff;
+  color: #fff;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.FormData button span {
+  position: absolute;
+  right: -15px;
+  top: 13px;
+
+  font-size: 18px;
+}

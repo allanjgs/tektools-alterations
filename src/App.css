@@ -1,0 +1,27 @@
+@import url("https://fonts.cdnfonts.com/css/omegle");
+body {
+  /* background-color: #000101; */
+  background-image: url("./img/Bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.active li {
+  color: #9945ff !important;
+}
+.rdw-editor-main {
+  background: #242424;
+  padding: 0px 20px;
+  height: 300px !important;
+  color: #fff;
+  margin-bottom: 30px;
+}

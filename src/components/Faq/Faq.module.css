@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+/* @font-face {
+  font-family: omegle2;
+  src: url(./../../fonts/omg2.ttf);
+} */
+@font-face {
+  font-family: tekros;
+  src: url(./../../fonts/Tekros-ExtraBold.ttf);
+}
+.faqTop {
+  width: 90%;
+  margin: auto;
+}
+.faqTop h1 {
+  font-family: "Lato", sans-serif;
+  /* font-family: "OMEGLE", sans-serif; */
+  font-style: normal;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 100px;
+  /* identical to box height */
+  color: #fff;
+  /* margin-bottom: -30px; */
+}
+.faqTop h1 span {
+  background-image: linear-gradient(
+    92.96deg,
+    #9945ff 0.58%,
+    #1bf5a0 98.97%
+  ) !important;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-family: tekros !important;
+}
+.faqTop p{
+font-family: "Lato", sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 22px;
+line-height: 26px;
+
+color: #FFFFFF;
+}
+@media screen and (max-width:800px){
+  .faqTop h1{
+    font-size: 35px;
+  }
+}
+@media screen and (max-width:700px){
+  .faqTop h1{
+    font-size: 25px;
+    line-height: 70px;
+  }
+}
