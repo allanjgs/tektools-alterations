@@ -11,7 +11,6 @@ const ChooseServer = () => {
   const GoServerChange = (serverId) => {
     updateSelectedServer(serverId); // Atualize o servidor selecionado no contexto
     window.location.href = '/dashboard';
-    console.log('Selected Server in chose server:', serverId); // Log do servidor selecionado para verificação
   };
 
   return (

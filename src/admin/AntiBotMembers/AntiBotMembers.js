@@ -16,8 +16,6 @@ const AntiBotMembers = () => {
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
   }
-
-
   //data e hora
   const [currentDateTime, setCurrentDateTime] = useState('');
   useEffect(() => {
@@ -31,11 +29,10 @@ const AntiBotMembers = () => {
   const formatNumber = (number) => {
     return number.toString().padStart(2, '0');
   };
-  //button
+  //button 
   const saveClick = (event) => {
     console.log('Save')
   }
-
   return (
     <section className='mx-auto text-white h-auto '>
       <div className=' flex flex-col gap-y-8 '>
@@ -113,7 +110,7 @@ const AntiBotMembers = () => {
           </label>
         </div>
         {/* Preview inicialmente escondido */}
-        <div className=''>
+        <div className='hidden'>
           <h2 className='font-semibold text-3xl pb-8'>Preview</h2>
           <div className='flex bg-second w-full h-auto rounded-md gap-x-4 p-3'>
             <div className='items-start justify-start'>
