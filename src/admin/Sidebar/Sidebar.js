@@ -8,13 +8,13 @@ import { useServer } from '../Contexts/ServerContext';
 
 
 const Sidebar = () => {
-  const { selectedServer, updateSelectedServer } = useServer(); // Use o hook useServer para acessar o contexto do servidor
 
+  const { selectedServer, updateSelectedServer } = useServer(); // Use o hook useServer para acessar o contexto do servidor
+  
   const handleServerChange = (serverId) => {
     updateSelectedServer(serverId); // Atualize o servidor selecionado no contexto
   };
 
-  console.log('Selected Server in Sidebar:', selectedServer);
   return (
     <section className='h-auto p-2 lg:p-6 text-white/70 bg-second drop-shadow-xl shadow-2xl shadow-shadow'>
       <div className='relative w-48'>

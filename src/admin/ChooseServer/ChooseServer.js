@@ -2,11 +2,9 @@ import React from 'react';
 import AvatarImage from '../../img/AvatarTektools.png';
 import { serverList } from '../TesteData/DataServerList';
 import { useServer } from '../Contexts/ServerContext';
-import HeaderAdmin from '../Header/HeaderAdmin';
 
 const ChooseServer = () => {
-  const { selectedServer, updateSelectedServer } = useServer(); // Use o hook useServer para acessar o contexto do servidor
-
+  const { updateSelectedServer } = useServer(); // Use o hook useServer para acessar o contexto do servidor
   // Função para atualizar o servidor selecionado no contexto
   const GoServerChange = (serverId) => {
     updateSelectedServer(serverId); // Atualize o servidor selecionado no contexto
