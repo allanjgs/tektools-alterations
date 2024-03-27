@@ -1,15 +1,28 @@
-import classes from "./HeaderAdmin.module.css";
-import logo from "./../../img/logor.png";
+import React from "react";
+
+import logo from "./../../img/200x60.png";
+import avatar from "./../../img/AvatarTektools.png";
 import profile from "./../../img/profile.png";
+import { BiBell } from "react-icons/bi";
+import { RiArrowDropDownLine } from 'react-icons/ri';
+
 const HeaderAdmin = () => {
   return (
-    <div className={classes.header}>
-      <div className={classes.left}>
+    <div className='px-28 h-20 flex flow-row justify-between items-center text-white w-full bg-gradient-to-r from-dark via-dark to-second'>
+      <a href="/" className='flex h-14 gap-x-10'>
+        <img src={avatar} alt="logo" className="" />
         <img src={logo} alt="logo" />
-      </div>
-      <div className={classes.right}>
-        <div className={classes.profile}>
-          <img src={profile} alt="profile" />
+      </a>
+      <div className=' flex gap-x-5 uppercase text-2xl items-center justify-center'>
+        <div className="pr-40">
+          <a href="/select-server">link</a>
+        </div>
+        <div className="flex gap-x-6 justify-center items-center">
+          <BiBell />
+          <button className="flex items-center" >
+            <img src={profile} alt="logo" className="rounded-full h-14 w-14 border" />
+            <RiArrowDropDownLine className="text-5xl" />
+          </button>
         </div>
       </div>
     </div>

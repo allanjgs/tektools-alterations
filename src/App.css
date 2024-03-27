@@ -1,3 +1,6 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @import url("https://fonts.cdnfonts.com/css/omegle");
 body {
   /* background-color: #000101; */
@@ -15,13 +18,17 @@ html {
   margin: 0;
   padding: 0;
 }
-.active li {
-  color: #9945ff !important;
-}
+
 .rdw-editor-main {
   background: #242424;
   padding: 0px 20px;
   height: 300px !important;
   color: #fff;
   margin-bottom: 30px;
+}
+
+/* Utilizado para estilizar link selecionado  */
+.active {
+  background: #393D5E !important;
+  border-radius: 2px;
 }

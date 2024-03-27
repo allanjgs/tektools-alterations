@@ -59,7 +59,6 @@ const Header = () => {
 
           <li>
             <a href="#fatureTop">Features</a>
-            <a href="/dashboard/TicketSystem">Dashboard</a>
           </li>
           <li>
             <a href="#pricingTop">Pricing</a>
@@ -70,16 +69,15 @@ const Header = () => {
           <li>
             <a href="https://verification.TekTools.app/#">Verification</a>
           </li>
-          <li>
-            <a href="/choose-server">Dashboard</a>
-            <a href="/dashboard/TicketSystem">Dashboard</a>
-          </li>
         </ul>
       </div>
       {userInfo && <Profile userInfo={userInfo} />}
       {!userInfo && (
         <div className={classes.right}>
-          <a href="https://discord.com/api/oauth2/authorize?client_id=1018337890884931654&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=token&scope=identify%20email%20guilds">
+          <a 
+          href="/select-server"
+          // href="https://discord.com/api/oauth2/authorize?client_id=1018337890884931654&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=token&scope=identify%20email%20guilds"
+          >
             <FaDiscord /> &nbsp; Login{" "}
           </a>
         </div>
