@@ -16,7 +16,6 @@ const Main = () => {
         <Prices />
         <Faq />
         <Footer />
-        
         </>
     )
 }
