@@ -16,7 +16,6 @@ const InputQuantity = () => {
 
   const handleChangeQuantity = (event) => {
     setSelectedQuantityValue(event.target.value);
-    console.log('O valor de collection Name é: ', selectedQuantityValue)
   };
 
   // useEffect(() => {
@@ -40,15 +39,14 @@ const InputQuantity = () => {
       <span className='px-3'>Quantity NFTs</span>
       <div className='flex flex-row justify-between w-full gap-x-5'>
         <div className='flex w-full border rounded-lg bg-accent'>
-          <Button onClick={handleDecrement} type='button' className='w-12  h-full'><AiOutlineMinus /></Button>
+          <Button onClick={handleDecrement} type='button' className='w-11 h-full'><AiOutlineMinus /></Button>
           <Input type="text" value={selectedQuantityValue} onChange={handleChangeQuantity} placeholder="Enter a quantity NFTs" className='rounded-none border-none' />
-          <Button onClick={handleIncrement} type='button' className='w-12  h-full'><AiOutlinePlus /></Button>
+          <Button onClick={handleIncrement} type='button' className='w-11  h-full'><AiOutlinePlus /></Button>
         </div>
         <div id='2' className='flex h-full'>
           <Button onClick={handleClickAdd} type='reset' className='h-12 w-16 font-thin bg-main'>ADD</Button>
         </div>
       </div>
-      {console.log('valor salvo para envio da API é: ', selectedQuantityValue)}
     </div>
   );
 };
