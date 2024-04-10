@@ -12,7 +12,7 @@ const ChooseServer = () => {
   };
 
   return (
-    <section className='flex h-full w-full bg-basic text-white py-10'>
+    <section className='flex h-full w-full text-white py-10'>
       <div className='container mx-auto'>
         <div className='w-11/12'>
           <h1 className='font-medium text-4xl pb-10 flex'>Select a Server</h1>

@@ -1,21 +1,24 @@
-// AdminMain.js
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header/HeaderAdmin';
 import Sidebar from './Sidebar/Sidebar';
+import { HolderVerificationProvider } from './HolderVerification/HolderVerificationContext'; // Importe o HolderVerificationProvider aqui
 
 const AdminMain = () => {
   return (
-    <>
+    <HolderVerificationProvider>
+    <div className='flex flex-col h-screen bg-bgAdmin bg-no-repeat bg-fixed bg-cover bg-top'>
       <Header />
-      <div className="flex ">
-        {/* Passe a rota como uma propriedade para o Sidebar */}
-        <Sidebar/>
-        <div className='flex w-full items-center justify-center mx-auto bg-basic h-screen'>
+      <div className='flex flex-1 overflow-hidden w-full'>
+        <div className='w-64 '>
+          <Sidebar />
+          </div>
+          <div className='flex-1 overflow-y-auto pt-8'>
           <Outlet />
         </div>
       </div>
-    </>
+    </div>
+    </HolderVerificationProvider>
   );
 };
 

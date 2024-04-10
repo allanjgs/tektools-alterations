@@ -16,7 +16,7 @@ const Sidebar = () => {
   };
 
   return (
-    <section className='h-auto p-2 lg:p-6 text-white/70 bg-second drop-shadow-xl shadow-2xl shadow-shadow'>
+    <section className='h-full p-2 lg:p-6 text-white/70  drop-shadow-2xl shadow-2xl shadow-shadow'>
       <div className='relative w-48'>
         <div className='pb-8'>
           <DropdownChoose onSelect={handleServerChange} />
@@ -35,11 +35,11 @@ const Sidebar = () => {
           </NavLink>
           <NavLink
             activeClassName='active'
-            to='verify-user'
+            to='HolderVerification'
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
             <FiUserCheck />
-            Verify User
+            Holder Verification
           </NavLink>
         </div>
       </div>

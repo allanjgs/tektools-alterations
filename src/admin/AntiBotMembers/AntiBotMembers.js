@@ -34,12 +34,12 @@ const AntiBotMembers = () => {
     console.log('Save')
   }
   return (
-    <section className='mx-auto text-white h-auto '>
+    <section className='mx-auto text-white container'>
       <div className=' flex flex-col gap-y-8 '>
         <h1 className='font-semibold text-4xl'>Anti bot members</h1>
         <h2 className='font-semibold text-2xl'>User Verification</h2>
         <p className='font-thin text-lg tracking-wide'>In order to join Toolbox NFTs we need first to verify you are not a bot, please click the verify button to start the verification</p>
-        <div className='flex flex-col lg:flex-row gap-x-5 justify-between gap-y-4'>
+        <div className='flex flex-col lg:flex-row gap-x-8 justify-between gap-y-4'>
           {/* Dropdown para selecionar o servidor */}
           <div className=' flex flex-col lg:w-1/2'>
             <span className='pb-1 tracking-tight'>Select channel</span>
