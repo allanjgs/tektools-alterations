@@ -13,7 +13,7 @@ const DropdownChoose = ({ onSelect }) => {
   return (
     <div className="relative">
       <select
-        className="block w-full text-white/90 bg-second border border-white/70 hover:border-white px-4 py-3 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline appearance-none"
+        className="block w-full text-white/90 bg-second border border-white/70 hover:border-white px-4 py-3 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline appearance-none "
         onChange={handleServerChange}
       >
         <option value="" hidden>Select Server</option>

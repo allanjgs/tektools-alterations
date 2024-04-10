@@ -5,11 +5,11 @@ import ChooseServer from './ChooseServer';
 
 const ChooseMain = () => {
   return (
-    <div className='h-screen bg-basic w-full'>
-      <div className='shadow-md shadow-shadow drop-shadow-xl'>
+    <div className='h-screen w-full bg-bgAdmin bg-no-repeat bg-cover'>
+      <div className=''>
         <HeaderAdmin />
         </div>
-      <div className="h-auto ">
+      <div className="h-auto">
           <ChooseServer />
       </div>
     </div>

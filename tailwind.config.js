@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       'omegle2': ['OMEGLE', 'sans-serif'],
+      'Roboto' : ['roboto-slab', 'sans-serif'],
     },
     container: {
       padding: {
@@ -21,13 +22,13 @@ module.exports = {
       basic: '#393D5E',
       second: '#2C2F48',
       third: '#4E537B',
-      shadow: '#2E1F5F',
+      shadow: '#240060',
       accent: '#7963F7',
       accentHouver: '#6527F7 ',
-      main: '#9223D1',
+      main: '#B420FF',
       mainHover: '#9945ff',
       dark: '#1E1E1E',
-      gray: '#505050',
+      gray: '#4F566A',
       white: '#fff',
       transparent: 'transparent',
     },
@@ -35,6 +36,7 @@ module.exports = {
       backgroundImage: {
         //image: "url('/src/assets/img/image.svg')",
         bg: "url('/src/img/Bg.png')",
+        bgAdmin: "url('/src/img/bg-admin.png')",
       },
       boxShadow: {
         primary: '0px 4px 40px rgba(0, 0, 0, 0.03)',

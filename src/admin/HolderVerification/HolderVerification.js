@@ -1,96 +1,120 @@
-import { useState } from "react";
-import HolderPerQuantityComponent from "./AddHolderPerQuantity";
-import HolderPerAttributeComponent from "./AddHolderPerAttribute";
-
-import classes from "./Tab4.module.css";
+import React, { useState } from 'react';
+import { HolderVerificationProvider } from './HolderVerificationContext';
+import CreatorAddress from './_components/InputCreatorAddress';
+import CollectionName from './_components/InputCollectionName';
+import SelectRole from './_components/DropdownSelectRole';
+import SwitchHashlist from './_components/SwitchHashlist';
+import SwitchSkipRole from './_components/SwitchSkipRole';
+import Button from '../components/ui/button';
+import DropdownTrait from './_components/DropdownTrait';
+import DropdownRoleQuantity from './_components/DropdownRoleQuantity';
+import InputQuantity from './_components/InputQuantity';
+import SwitchNotification from './_components/SwitchNotification';
+import TableTrait from './_components/TableTrait';
 
 const HolderVerification = () => {
-  const [showUploadButton, setShowUploadButton] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  // Estados para armazenar os valores dos componentes de entrada e seleção
+  const [creatorAddress, setCreatorAddress] = useState('');
+  const [collectionName, setCollectionName] = useState('');
+  const [selectedRole, setSelectedRole] = useState('');
+  const [traits, setTraits] = useState([]);
+  const [showSections, setShowSections] = useState(false);
 
-  const handleDropdownChange = (event) => {
-    const value = event.target.value;
-    setSelectedOption(value);
-    setShowUploadButton(value === "yes");
+  const handleAddTrait = (newTraitInfo) => {
+    if (!newTraitInfo.type || !newTraitInfo.value || !newTraitInfo.role) {
+      alert("Todos os campos da trait devem ser preenchidos.");
+      return;
+    }
+
+    const traitExists = traits.some(trait =>
+      trait.type === newTraitInfo.type &&
+      trait.value === newTraitInfo.value &&
+      trait.role === newTraitInfo.role
+    );
+
+    if (!traitExists) {
+      setTraits([...traits, newTraitInfo]);
+    } else {
+      alert("A combinação de trait já existe.");
+    }
   };
 
-  const handleFileUpload = (event) => {
-    // Handle the file upload logic here
-    console.log("File uploaded:", event.target.files[0]);
+  const handleClickDel = (index) => {
+    setTraits(traits.filter((_, i) => i !== index));
   };
+
+  const handleClickSave = () => {
+    if (creatorAddress && collectionName && selectedRole) {
+      setShowSections(true); // Mostra as seções se todos os campos estiverem preenchidos
+  
+      // Coletando as informações em um objeto
+      const collectedInfo = {
+        CreatorAddress: creatorAddress,
+        CollectionName: collectionName,
+        SelectedRole: selectedRole,
+        Traits: traits // Adicionando as traits coletadas
+      };
+      console.log(collectedInfo); // Aqui você pode substituir por uma chamada de API ou outra lógica conforme necessário
+    } else {
+      alert("Por favor, preencha todos os campos necessários antes de salvar.");
+    }
+  };
+
+  const handleClickCancel = () => {
+    alert('clicou no cancelar')
+  }
+
   return (
-    <div>
-      <div className={classes.FormData}>
-        <p><h3>HOLDER VERIFICATION</h3></p>
-        <label for="input1">Creator Address</label>
-        <input type="text" placeholder="Creator Address" />
-        <div className={classes.row}>
-          <span>
-            <label for="hashlist">Hash List</label>
-            <select
-              id="hashlist"
-              name="hashlist"
-              value={selectedOption}
-              onChange={handleDropdownChange}
-            >
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </span>
-          <span>
-            <label for="roles">Roles</label>
-            <select id="roles" name="roles">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </span>
-        </div>
-        <div  className={classes.row}>
-          <span>
-            {showUploadButton && (
-              <div>
-                <input type="file" onChange={handleFileUpload} />
+    <HolderVerificationProvider>
+      <section className='container mx-auto h-full text-white'>
+        <div className='flex flex-col gap-y-3'>
+          <h1>Holder Verification</h1>
+          <div className='flex flex-col lg:flex-row lg:gap-x-5'>
+            {/* Passando funções para atualizar o estado como props */}
+            <CreatorAddress value={creatorAddress} onChange={setCreatorAddress} />
+            <CollectionName value={collectionName} onChange={setCollectionName} />
+          </div>
+          <div className='flex flex-col lg:flex-row lg:gap-x-10 '>
+            <SwitchHashlist />
+            <SwitchSkipRole />
+          </div>
+          {/* Passando funções para atualizar o estado como props */}
+          <SelectRole value={selectedRole} onChange={setSelectedRole} />
+
+          {/* Define per attribute section  */}
+          <div className={`flex flex-col gap-y-3 ${showSections ? '' : 'hidden'}`}>            <h1>Define role per attribute</h1>
+            <div className='flex w-full'>
+              <DropdownTrait onAddTrait={handleAddTrait} />
+
+
+            </div>
+            <div className='flex justify-center'>
+              <TableTrait traits={traits} onClickDel={handleClickDel} />
+            </div>
+          </div>
+          {/* Define per quantity section  */}
+          <div className={`flex flex-col gap-y-3 ${showSections ? '' : 'hidden'}`}>            <h1>Define role per quantity</h1>
+            <div className='flex flex-col lg:flex-row lg:gap-x-5 '>
+              <DropdownRoleQuantity />
+              <InputQuantity />
+            </div>
+            <div className='flex flex-col'>
+              <h1>Notification</h1>
+              <div className='flex justify-start'>
+                <SwitchNotification />
               </div>
-            )}
-          </span>
+            </div>
+          </div>
+          {/* Button section  */}
+          <hr className="h-px mb-5 bg-gray border-0" />
+          <div className='flex justify-between pb-10'>
+            <Button onClick={handleClickCancel} type='reset' className='w-40 bg-basic border'>Cancelar</Button>
+            <Button onClick={handleClickSave} type='button'>Save</Button>
+          </div>
         </div>
-        <p className={classes.para}><h3>NOTIFICATION</h3></p>
-        <div className={classes.row}>
-          <span>
-            <label for="sales">Sales</label>
-            <select id="sales" name="sales">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </span>
-          <span>
-            <label for="listings">Listings</label>
-            <select id="listings" name="listings">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </span>
-        </div>
-        <div className={classes.row}>
-          <span>
-            <label for="minting">Minting</label>
-            <select id="minting" name="minting">
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </span>
-        </div>
-        <button>Submit</button>
-      </div>
-      <div className={classes.rolePerQuantity}>
-        <p><h3>Role Per Quantity</h3></p>
-        <HolderPerQuantityComponent />
-      </div>
-      <div className={classes.rolePerQuantity}>
-        <p><h3>Role Per Attribute</h3></p>
-        <HolderPerAttributeComponent />
-      </div>
-    </div>
+      </section>
+    </HolderVerificationProvider>
   );
 };
+
 export default HolderVerification;
