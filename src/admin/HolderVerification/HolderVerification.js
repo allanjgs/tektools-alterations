@@ -18,6 +18,7 @@ const HolderVerification = () => {
   const [collectionName, setCollectionName] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
   const [traits, setTraits] = useState([]);
+  const [showSections, setShowSections] = useState(false);
 
   const handleAddTrait = (newTraitInfo) => {
     if (!newTraitInfo.type || !newTraitInfo.value || !newTraitInfo.role) {
@@ -43,14 +44,20 @@ const HolderVerification = () => {
   };
 
   const handleClickSave = () => {
-    // Coletando as informações em um objeto
-    const collectedInfo = {
-      CreatorAddress: creatorAddress,
-      CollectionName: collectionName,
-      SelectedRole: selectedRole,
-      Traits: traits // Adicionando as traits coletadas
-    };
-    console.log(collectedInfo); // Aqui você pode substituir por uma chamada de API ou outra lógica conforme necessário
+    if (creatorAddress && collectionName && selectedRole) {
+      setShowSections(true); // Mostra as seções se todos os campos estiverem preenchidos
+  
+      // Coletando as informações em um objeto
+      const collectedInfo = {
+        CreatorAddress: creatorAddress,
+        CollectionName: collectionName,
+        SelectedRole: selectedRole,
+        Traits: traits // Adicionando as traits coletadas
+      };
+      console.log(collectedInfo); // Aqui você pode substituir por uma chamada de API ou outra lógica conforme necessário
+    } else {
+      alert("Por favor, preencha todos os campos necessários antes de salvar.");
+    }
   };
 
   const handleClickCancel = () => {
@@ -59,7 +66,7 @@ const HolderVerification = () => {
 
   return (
     <HolderVerificationProvider>
-      <section className='container mx-auto h-full bg-white/5 text-white'>
+      <section className='container mx-auto h-full text-white'>
         <div className='flex flex-col gap-y-3'>
           <h1>Holder Verification</h1>
           <div className='flex flex-col lg:flex-row lg:gap-x-5'>
@@ -75,8 +82,7 @@ const HolderVerification = () => {
           <SelectRole value={selectedRole} onChange={setSelectedRole} />
 
           {/* Define per attribute section  */}
-          <div className='flex flex-col gap-y-3'>
-            <h1>Define role per attribute</h1>
+          <div className={`flex flex-col gap-y-3 ${showSections ? '' : 'hidden'}`}>            <h1>Define role per attribute</h1>
             <div className='flex w-full'>
               <DropdownTrait onAddTrait={handleAddTrait} />
 
@@ -87,8 +93,7 @@ const HolderVerification = () => {
             </div>
           </div>
           {/* Define per quantity section  */}
-          <div className='flex flex-col gap-y-3 w-full'>
-            <h1>Define role per quantity</h1>
+          <div className={`flex flex-col gap-y-3 ${showSections ? '' : 'hidden'}`}>            <h1>Define role per quantity</h1>
             <div className='flex flex-col lg:flex-row lg:gap-x-5 '>
               <DropdownRoleQuantity />
               <InputQuantity />
@@ -102,7 +107,7 @@ const HolderVerification = () => {
           </div>
           {/* Button section  */}
           <hr className="h-px mb-5 bg-gray border-0" />
-          <div className='flex justify-between'>
+          <div className='flex justify-between pb-10'>
             <Button onClick={handleClickCancel} type='reset' className='w-40 bg-basic border'>Cancelar</Button>
             <Button onClick={handleClickSave} type='button'>Save</Button>
           </div>
