@@ -1,48 +1,42 @@
 import React from 'react'
 import Switch from '../../components/ui/switch';
-import { useHolderVerification } from '../HolderVerificationContext';
 
-const SwitchNotification = () => {
+
+const SwitchNotification = ({isCheckedMinting, isCheckedSales, isCheckedListing, setIsCheckedMinting, setIsCheckedSales, setIsCheckedListing}) => {
   // Estados e métodos para Minting
-  const { isCheckedNotificationMinting, setIsCheckedNotificationMinting } = useHolderVerification();
-  const handleCheckboxMinting = () => {
-    setIsCheckedNotificationMinting(!isCheckedNotificationMinting);
-    console.log(isCheckedNotificationMinting)
+  const handleCheckboxMinting = (event) => {
+    setIsCheckedMinting(event.target.checked);
   };
 
   // Estados e métodos para Sales
-  const { isCheckedNotificationSales, setIsCheckedNotificationSales } = useHolderVerification();
-  const handleCheckboxSales = () => {
-    setIsCheckedNotificationSales(!isCheckedNotificationSales);
-    console.log(isCheckedNotificationSales)
+  const handleCheckboxSales = (event) => {
+    setIsCheckedSales(event.target.checked);
   };
 
   // Estados e métodos para Listing
-  const { isCheckedNotificationListing, setIsCheckedNotificationListing } = useHolderVerification();
-  const handleCheckboxListing = () => {
-    setIsCheckedNotificationListing(!isCheckedNotificationListing);
-    console.log(isCheckedNotificationListing)
+  const handleCheckboxListing = (event) => {
+    setIsCheckedListing(event.target.checked);
   };
 
   return (
     <div className='flex flex-col gap-y-3'>
       <Switch
         span='Minting'
-        isChecked={isCheckedNotificationMinting}
+        isChecked={isCheckedMinting}
         handleCheckboxChange={handleCheckboxMinting}
         labelLeft="NO"
         labelRight="YES"
       />
       <Switch
         span='Sales'
-        isChecked={isCheckedNotificationSales}
+        isChecked={isCheckedSales}
         handleCheckboxChange={handleCheckboxSales}
         labelLeft="NO"
         labelRight="YES"
       />
       <Switch
         span='Listing'
-        isChecked={isCheckedNotificationListing}
+        isChecked={isCheckedListing}
         handleCheckboxChange={handleCheckboxListing}
         labelLeft="NO"
         labelRight="YES"

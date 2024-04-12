@@ -4,7 +4,7 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 const Dropdown = ({ options, value, onChange, className, placeholder }) => {
   return (
     <div className="relative">
-      <select value={value} onChange={onChange} className={`block w-full h-12 text-white/50 bg-third border border-white/70 hover:border-white px-4 py-3 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline appearance-none ${className}`}>
+      <select value={value} onChange={onChange} className={`block w-full h-12 bg-third border border-white/70 hover:border-white px-4 py-3 rounded-lg shadow leading-tight focus:outline-none focus:border-main focus:bg-basic focus:shadow-outline appearance-none ${className}`}>
         <option value="" hidden>{placeholder}</option>
         {options.map(option => (
           <option key={option.value} value={option.value}>

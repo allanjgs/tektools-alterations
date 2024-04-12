@@ -1,25 +1,19 @@
 import React from 'react';
 import Switch from '../../components/ui/switch';
-import { useHolderVerification } from '../HolderVerificationContext';
 
-
-const SwitchHashlist = () => {
-  const { isCheckedHashlist, setIsCheckedHashlist } = useHolderVerification();
-
-  const handleCheckboxChange = () => {
-    setIsCheckedHashlist(!isCheckedHashlist);
-    console.log(isCheckedHashlist)
+const SwitchHashlist = ({ isChecked, setIsChecked }) => {
+  const handleChange = (event) => {
+    setIsChecked(event.target.checked);
   };
 
   return (
       <Switch
         span='Hashlist'
-        isChecked={isCheckedHashlist}
-        handleCheckboxChange={handleCheckboxChange}
+        isChecked={isChecked}
+        handleCheckboxChange={handleChange}
         labelLeft="NO"
         labelRight="YES"
       />
   );
 };
-
 export default SwitchHashlist;

@@ -1,19 +1,21 @@
 import React from 'react';
 
-const Switch = ({ isChecked, handleCheckboxChange,span , labelLeft, labelRight }) => {
+const Switch = ({ isChecked, handleCheckboxChange,span , labelLeft, labelRight, className }) => {
   return (
-    <div className='flex flex-row gap-x-10 font-thin text-lg tracking-wide items-center pt-4 justify-between w-full'>
-      <span>{span}</span>
-      <label className='themeSwitcherTwo relative inline-flex cursor-pointer select-none items-center'>
+    <div className='flex flex-row gap-x-10 font-thin text-lg tracking-wide items-center text-center justify-between w-full '>
+      <span className={`text-base font-thin  ${className}`}>{span}</span>
+      <label className='relative inline-flex cursor-pointer select-none items-center'>
         <input
           type='checkbox'
           checked={isChecked}
           onChange={handleCheckboxChange}
           className='sr-only'
         />
-        <span className='label flex items-center'>{labelLeft}</span>
+        <span className={`text-xs font-bold  ${
+              isChecked ? '' : ''
+            }`}>{labelLeft}</span>
         <span
-          className={`mx-4 flex h-8 w-[60px] items-center rounded-full p-1 duration-200 ${
+          className={`mx-4 flex h-8 w-14 items-center rounded-full p-1 duration-200 ${
             isChecked ? 'bg-accent' : 'bg-third'
           }`}
         >
@@ -23,7 +25,9 @@ const Switch = ({ isChecked, handleCheckboxChange,span , labelLeft, labelRight }
             }`}
           ></span>
         </span>
-        <span className='label flex items-center'>{labelRight}</span>
+        <span className={`text-xs font-bold  ${
+              isChecked ? '' : ''
+            }`}>{labelRight}</span>
       </label>
     </div>
   );
