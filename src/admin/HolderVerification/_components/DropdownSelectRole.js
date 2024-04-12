@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHolderVerification } from '../HolderVerificationContext';
 import Dropdown from '../../components/ui/dropdown';
 
 const optionsRole = [

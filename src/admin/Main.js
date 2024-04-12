@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header/HeaderAdmin';
 import Sidebar from './Sidebar/Sidebar';
-import { HolderVerificationProvider } from './HolderVerification/HolderVerificationContext'; // Importe o HolderVerificationProvider aqui
+import { HolderVerificationProvider } from './HolderVerification/HolderVerificationContext';
 
 const AdminMain = () => {
   return (
