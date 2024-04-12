@@ -15,8 +15,8 @@ const DropdownSelectRole = ({value, onChange}) => {
   };
 
   return (
-    <div className='flex flex-col w-full gap-y-1 lg:w-1/2 lg:pr-3'>
-      <span className='px-3'>Select role</span>
+    <div className='flex flex-col w-full gap-y-1 lg:w-1/2 '>
+      <span className='px-3 text-base font-thin'>Select role</span>
       <Dropdown options={optionsRole} value={value} onChange={handleSelectCreator} placeholder='Select a role' />
     </div>
   );

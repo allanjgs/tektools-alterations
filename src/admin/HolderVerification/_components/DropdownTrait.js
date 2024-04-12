@@ -44,21 +44,21 @@ const DropdownTrait = ({ onAddTrait }) => {
   };
 
   return (
-    <div className='flex flex-col lg:flex-row w-full gap-y-1 gap-x-5 items-center'>
-      <div className='w-full'>
-        <span className='px-3'>Trait type</span>
+    <div className='flex flex-col lg:flex-row w-full gap-y-5 lg:gap-x-5 items-center text-base font-thin'>
+      <div className='flex flex-col w-full gap-y-1'>
+        <span className='px-3 '>Trait type</span>
         <Dropdown options={optionsTraitType} value={selectedTraitType} onChange={(e) => setSelectedTraitType(e.target.value)} placeholder='Enter a trait type' />
       </div>
-      <div className='w-full'>
+      <div className='flex flex-col w-full gap-y-1'>
         <span className='px-3'>Trait value</span>
         <Dropdown options={optionsTraitValue} value={selectedTraitValue} onChange={(e) => setSelectedTraitValue(e.target.value)} placeholder='Enter a trait value' />
       </div>
-      <div className='w-full'>
+      <div className='flex flex-col w-full gap-y-1'>
         <span className='px-3'>Select role</span>
         <Dropdown options={optionsTraitRole} value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} placeholder='Select a role' />
       </div>
-      <div className='flex h-full items-end'>
-        <Button onClick={handleClickAdd} type='button' className='h-12 w-16 font-thin bg-main'>ADD</Button>
+      <div className='flex h-full items-end pt-5 lg:pt-0'>
+        <Button onClick={handleClickAdd} type='button' className='h-12 lg:w-12 font-thin bg-main'>ADD</Button>
       </div>
     </div>
   );
