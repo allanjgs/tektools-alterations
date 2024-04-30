@@ -109,14 +109,15 @@ const HolderVerification = () => {
   const handleClickCancel = () => {
     alert('clicou no cancelar')
   }
-  
+
 
   return (
     <HolderVerificationProvider>
       <section className='container mx-auto h-full text-white py-5'>
         <div className='flex flex-col'>
           <div>
-            <h1 className='text-4xl pb-14 font-bold' >Holder Verification</h1></div>
+            <h1 className='text-4xl pb-14 font-bold' >Holder Verification</h1>
+          </div>
           {/* Collection information section */}
           <div className='flex flex-col gap-y-5 py-5'>
             <h2 className='text-2xl font-medium'>Collection information</h2>
@@ -136,7 +137,7 @@ const HolderVerification = () => {
               />
             </div>
             <div >
-            {isCheckedHashlist && <ButtonUploadList />}
+              {isCheckedHashlist && <ButtonUploadList />}
             </div>
             <div className='pb-5'>
               <SelectRole value={selectedRole} onChange={setSelectedRole} />

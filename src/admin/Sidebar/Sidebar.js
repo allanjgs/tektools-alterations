@@ -1,3 +1,10 @@
+import { MdOutlineAccountBalanceWallet } from "react-icons/md";
+import { MdLockOutline } from "react-icons/md";
+import { MdHowToVote } from "react-icons/md";
+import { AiFillDatabase } from "react-icons/ai";
+import { AiOutlineLogout } from "react-icons/ai";
+import { MdOutlineToken } from "react-icons/md";
+import { BsArrowLeftRight } from "react-icons/bs";
 // Sidebar.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -10,7 +17,7 @@ import { useServer } from '../Contexts/ServerContext';
 const Sidebar = () => {
 
   const { selectedServer, updateSelectedServer } = useServer(); // Use o hook useServer para acessar o contexto do servidor
-  
+
   const handleServerChange = (serverId) => {
     updateSelectedServer(serverId); // Atualize o servidor selecionado no contexto
   };
@@ -31,8 +38,9 @@ const Sidebar = () => {
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
             <AiTwotoneUsb />
-            AntiBotMembers
+            Anti Bot Members
           </NavLink>
+
           <NavLink
             activeClassName='active'
             to='HolderVerification'
@@ -40,6 +48,66 @@ const Sidebar = () => {
           >
             <FiUserCheck />
             Holder Verification
+          </NavLink>
+
+          <NavLink
+            activeClassName='active'
+            to='StakingSetup'
+            className='flex items-center gap-2 py-1 px-2  hover:text-white'
+          >
+            <BsArrowLeftRight />
+            Staking Setup
+          </NavLink>
+
+          <NavLink
+            activeClassName='active'
+            to='AntiBotMembers'
+            className='flex items-center gap-2 py-1 px-2  hover:text-white'
+          >
+            <AiOutlineLogout />
+            Revenue Sharing
+          </NavLink>
+          <NavLink
+            activeClassName='active'
+            to='TokenCreation'
+            className='flex items-center gap-2 py-1 px-2  hover:text-white'
+          >
+            <MdOutlineToken />
+            SPL - Token Creation
+          </NavLink>
+          <NavLink
+            activeClassName='active'
+            to='AntiBotMembers'
+            className='flex items-center gap-2 py-1 px-2  hover:text-white'
+          >
+            <AiFillDatabase />
+            Decentralized Store
+          </NavLink>
+         
+          <NavLink
+            activeClassName='active'
+            to='AntiBotMembers'
+            className='flex items-center gap-2 py-1 px-2  hover:text-white'
+          >
+            <MdHowToVote />
+            Voting System
+          </NavLink>
+
+          <NavLink
+            activeClassName='active'
+            to='AntiBotMembers'
+            className='flex items-center gap-2 py-1 px-2  hover:text-white'
+          >
+            <MdLockOutline />
+            Password Lock
+          </NavLink>
+          <NavLink
+            activeClassName='active'
+            to='AntiBotMembers'
+            className='flex items-center gap-2 py-1 px-2  hover:text-white'
+          >
+            <MdOutlineAccountBalanceWallet />
+            Wallet Management
           </NavLink>
         </div>
       </div>
