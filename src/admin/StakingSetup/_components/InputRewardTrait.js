@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import Button from '../../components/ui/button';
 import Input from '../../components/ui/input';
 
-const InputWithdraw = ({ quantity, setQuantity }) => {
+
+const InputRewardTrait = ({ onAddQuantity }) => {
+  const [quantity, setQuantity] = useState('');
+
   const updateQuantity = (newQuantity) => {
     setQuantity(newQuantity);
+    // Verifica se onAddQuantity é uma função antes de chamá-la
+    if (typeof onAddQuantity === 'function') {
+      onAddQuantity({ nft: newQuantity.toString() });
+    } else {
+      console.error('onAddQuantity is not a function');
+    }
   };
 
   const handleChangeQuantity = (event) => {
@@ -14,21 +23,22 @@ const InputWithdraw = ({ quantity, setQuantity }) => {
       updateQuantity(newValue);
     }
   };
+
   const handleDecrement = () => {
     setQuantity(prevQuantity => Math.max(prevQuantity - 1, 0));
   };
 
   const handleIncrement = () => {
-    setQuantity(prevQuantity => Math.min(prevQuantity + 1, 1000));
+    setQuantity(prevQuantity => Math.min(prevQuantity + 1, 90));
   };
 
   return (
     <div className='flex flex-col gap-y-1 gap-x-5 text-base font-thin'>
-      <span className='px-3'>Minimum withdraw balance*</span>
+      <span className='px-3'>Enter the reward for your trait</span>
       <div className='flex flex-row gap-x-5'>
         <div className='flex border rounded-lg bg-accent'>
           <Button onClick={handleDecrement} type='button' className='w-[45px] h-full'><AiOutlineMinus /></Button>
-          <Input type="text" value={quantity} onChange={handleChangeQuantity} placeholder="Exemple: 100" className='text-center px-0 rounded-none border-none' />
+          <Input type="text" value={quantity} onChange={handleChangeQuantity} placeholder="Exemple: 10, etc" className='text-center px-0 rounded-none border-none' />
           <Button onClick={handleIncrement} type='button' className='w-[45px] h-full'><AiOutlinePlus /></Button>
         </div>
       </div>
@@ -36,4 +46,4 @@ const InputWithdraw = ({ quantity, setQuantity }) => {
   )
 }
 
-export default InputWithdraw
+export default InputRewardTrait
