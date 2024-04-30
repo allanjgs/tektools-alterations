@@ -7,6 +7,9 @@ const TokenInformation = ({ valueName, valueAddress, onChangeName, onChangeAddre
   const handleChangeName = (event) => {
     onChangeName(event.target.value);
   };
+  const handleChangeAddress = (event) => {
+    onChangeAddress(event.target.value);
+  };
 
   return (
     <div className='flex flex-row gap-x-5'>
@@ -16,7 +19,7 @@ const TokenInformation = ({ valueName, valueAddress, onChangeName, onChangeAddre
       </div>
       <div className='flex flex-col w-full gap-y-1 lg:w-1/2'>
         <span className='px-3 text-base font-thin'>Enter the token address here*</span>
-        <Input type="text" value={valueName} onChange={handleChangeName} placeholder="Example: DezXAZ8z7PnrnRjz3wXBoRgixCa6xjnB7" />
+        <Input type="text" value={valueAddress} onChange={handleChangeAddress} placeholder="Example: DezXAZ8z7PnrnRjz3wXBoRgixCa6xjnB7" />
       </div>
     </div>
   );

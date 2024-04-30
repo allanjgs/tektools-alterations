@@ -1,20 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import Button from '../../components/ui/button';
 import Input from '../../components/ui/input';
 
 
-export const InputHolderDay = ({ onAddQuantity }) => {
-  const [quantity, setQuantity] = useState('');
-
+export const InputHolderDay =({ quantity, setQuantity }) => {
   const updateQuantity = (newQuantity) => {
     setQuantity(newQuantity);
-    // Verifica se onAddQuantity é uma função antes de chamá-la
-    if (typeof onAddQuantity === 'function') {
-      onAddQuantity({ nft: newQuantity.toString() });
-    } else {
-      console.error('onAddQuantity is not a function');
-    }
   };
 
   const handleChangeQuantity = (event) => {
@@ -45,3 +37,5 @@ export const InputHolderDay = ({ onAddQuantity }) => {
     </div>
   )
 }
+
+export default InputHolderDay
