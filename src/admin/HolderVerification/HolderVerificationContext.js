@@ -1,9 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// Criar o contexto
 const HolderVerificationContext = createContext();
 
-// Provedor do contexto
 export const HolderVerificationProvider = ({ children }) => {
   const [creatorAddress, setCreatorAddress] = useState('');
   const [collectionName, setCollectionName] = useState('');

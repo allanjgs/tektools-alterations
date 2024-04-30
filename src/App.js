@@ -10,6 +10,8 @@ import NotFound from "./admin/NotFound/NotFound";
 import AntiBotMembers from "./admin/AntiBotMembers/AntiBotMembers";
 import ChooseMain from "./admin/ChooseServer/Main";
 import HolderVerification from "./admin/HolderVerification/HolderVerification";
+import StakingSetup from "./admin/StakingSetup/StakingSetup";
+import TokenCreation from "./admin/TokenCreation/TokenCreation";
 
 
 
@@ -30,7 +32,8 @@ function App() {
         <Route path="/dashboard" element={<AdminMain />}>
           <Route path="antiBotMembers" element={<AntiBotMembers />} />
           <Route path="HolderVerification" element={<HolderVerification />} />
-          
+          <Route path="StakingSetup" element={<StakingSetup />} />
+          <Route path="TokenCreation" element={<TokenCreation />} />          
           <Route path="not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/dashboard/not-found" />} />
         </Route>

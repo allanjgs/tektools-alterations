@@ -7,7 +7,7 @@ const optionsRole = [
   { label: 'Opção C', value: 'zxcvbn'}
 ];
 
-const DropdownSelectRole = ({value, onChange}) => {
+const DropdownSelectChannel = ({value, onChange}) => {
 
   const handleSelectCreator = (event) => {
     onChange(event.target.value);
@@ -18,7 +18,7 @@ const DropdownSelectRole = ({value, onChange}) => {
       <span className='px-3 text-base font-thin'>Select role</span>
       <Dropdown options={optionsRole} value={value} onChange={handleSelectCreator} placeholder='Select a role' />
     </div>
-  );
-};
+  )
+}
 
-export default DropdownSelectRole;
+export default DropdownSelectChannel

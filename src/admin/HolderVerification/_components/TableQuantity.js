@@ -3,7 +3,6 @@ import { CgTrash } from "react-icons/cg";
 import Button from "../../components/ui/button";
 
 const TableQuantity = ({ quantitys, onClickDel }) => {
-
   const tableHidden = quantitys.length === 0 ? 'hidden' : '';
 
   return (

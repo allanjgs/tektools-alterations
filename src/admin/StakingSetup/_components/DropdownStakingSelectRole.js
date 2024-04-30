@@ -7,7 +7,7 @@ const optionsRole = [
   { label: 'Opção C', value: 'zxcvbn'}
 ];
 
-const DropdownSelectRole = ({value, onChange}) => {
+const DropdownStakingSelectRole = ({value, onChange}) => {
 
   const handleSelectCreator = (event) => {
     onChange(event.target.value);
@@ -21,4 +21,4 @@ const DropdownSelectRole = ({value, onChange}) => {
   );
 };
 
-export default DropdownSelectRole;
+export default DropdownStakingSelectRole;

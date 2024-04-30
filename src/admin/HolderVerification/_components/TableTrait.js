@@ -3,7 +3,6 @@ import { CgTrash } from "react-icons/cg";
 import Button from "../../components/ui/button";
 
 const TableTrait = ({ traits, onClickDel }) => {
-  // Verifica se o array de traits está vazio
   const tableHidden = traits.length === 0 ? 'hidden' : '';
 
   return (

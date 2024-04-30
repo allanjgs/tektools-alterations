@@ -20,7 +20,7 @@ const optionsTraitRole = [
 ];
 
 const DropdownTrait = ({ onAddTrait }) => {
-  const { selectedRole, setSelectedRole, selectedTraitType, setSelectedTraitType, selectedTraitValue, setSelectedTraitValue } = useHolderVerification(); // Apenas se você estiver usando Context
+  const { selectedRole, setSelectedRole, selectedTraitType, setSelectedTraitType, selectedTraitValue, setSelectedTraitValue } = useHolderVerification(); 
 
   const handleClickAdd = () => {
     const newTraitInfo = {
@@ -31,17 +31,6 @@ const DropdownTrait = ({ onAddTrait }) => {
     onAddTrait(newTraitInfo);
   };
 
-  const handleSelectTraitType = (event) => {
-    setSelectedTraitType(event.target.value);
-  };
-
-  const handleSelectTraitValue = (event) => {
-    setSelectedTraitValue(event.target.value);
-  };
-
-  const handleSelectTraitRole = (event) => {
-    setSelectedRole(event.target.value);
-  };
 
   return (
     <div className='flex flex-col lg:flex-row w-full gap-y-5 lg:gap-x-5 items-center text-base font-thin'>
