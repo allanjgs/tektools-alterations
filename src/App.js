@@ -24,7 +24,6 @@ function App() {
 
   return (
     <div className="App">
-      
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/allfeatures" element={<MoreFeature />} />

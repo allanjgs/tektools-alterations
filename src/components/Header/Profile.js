@@ -1,82 +1,36 @@
+import { IoIosArrowDown } from "react-icons/io";
 import React, { useState } from "react";
-import classes from "./Profile.module.css";
-import userverify from "./../../img/userVerify.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGear,
-  faCircleQuestion,
-  faFile,
-  faRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
-const Profile = ({ userInfo }) => {
-  const [showProfileSetting, setShowProfileSetting] = useState(false);
-  return (
-    <div className={classes.profileTop}>
-      <div className={classes.user}  onClick={() => setShowProfileSetting(!showProfileSetting)}>
-        <div
-          className={classes.profileImg}
-         
-          
-        >
-          <img src={userverify} alt="userVerify" />
+import { NavLink } from "react-router-dom";
 
-          <img 
-            src={`https://cdn.discordapp.com/avatars/${userInfo.data.id}/${userInfo.data.avatar}.jpg`}
-            id="avatar"
-            className=""
-            alt=""
-          />
-        </div>
-        <p>
-          {userInfo.data.username}
-        </p>
-      </div>
-      {showProfileSetting && (
-        <div className={classes.profileContent}>
-          <h3>Dashboard</h3>
-          <div>
-            <p><a href="/choose-server">Dashboard</a></p>
-            <p>Holder Verification</p>
-          </div>
-          <div>
-            <p>Staking</p>
-            <p>Revenue Sharing</p>
-          </div>
-          <br />
-          <h3>ACCOUNT</h3>
-          <div>
-            <p>User Info</p>
-            <p>Wallets</p>
-          </div>
-          <div>
-            <p>User Info</p>
-            <p>User Security</p>
-          </div>
-          <div>
-            <p>Calendar</p>
-          </div>
-          <br/>
-          <hr />
-          <br/>
-          <div>
-            <p>
-              <FontAwesomeIcon icon={faCircleQuestion} /> &nbsp; Help
-            </p>
-            <p>
-              <FontAwesomeIcon icon={faGear} /> &nbsp; Settings
-            </p>
-          </div>
-          <div>
-            <p>
-              <FontAwesomeIcon icon={faFile} /> &nbsp; &nbsp;Docs
-            </p>
-            <p>
-              <FontAwesomeIcon icon={faRightFromBracket} /> &nbsp; &nbsp;Logout
-            </p>
-          </div>
+const Profile = ({ userData }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const handleLogout = () => {
+    localStorage.clear(userData);
+    window.location.replace('/')
+  };
+
+
+  return (
+    <section className=" text-white">
+      <button className="flex flex-row items-center justify-end gap-x-3 w-52" onClick={() => setShowDropdown(!showDropdown)}>
+        <img className="rounded-full h-12" src={`https://cdn.discordapp.com/avatars/${userData.user.id}/${userData.user.avatar}?size=64`} alt="Avatar" />
+        <h2 className="text-xl font-semibold">{userData.user.global_name}</h2>
+        <IoIosArrowDown />
+      </button>
+      {showDropdown && (
+        <div className="absolute shadow-md mt-2 px-3 py-5 gap-y-2 z-50 w-52 flex flex-col items-start text-start text-lg font-medium bg-gray rounded-lg">
+          <NavLink
+            activeClassName='active'
+            to='select-server'
+            className='hover:text-white/70 hover:bg-basic/30 w-full text-start  hover:scale-110 hover:pl-4 transition duration-300'
+          >
+            My servers
+          </NavLink>
+          <button className="text-white hover:text-white/70 hover:bg-basic/30 w-full text-start  hover:scale-110 hover:pl-4 transition duration-300" onClick={handleLogout}>Logout</button>
         </div>
       )}
-    </div>
+
+    </section>
   );
 };
 

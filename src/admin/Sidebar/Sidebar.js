@@ -11,20 +11,19 @@ import { NavLink } from 'react-router-dom';
 import { AiTwotoneUsb } from 'react-icons/ai';
 import { FiUserCheck } from 'react-icons/fi';
 import DropdownChoose from '../ChooseServer/DropdownChoose';
-import { useServer } from '../Contexts/ServerContext';
+
 
 
 const Sidebar = () => {
 
-  const { selectedServer, updateSelectedServer } = useServer(); // Use o hook useServer para acessar o contexto do servidor
 
   const handleServerChange = (serverId) => {
-    updateSelectedServer(serverId); // Atualize o servidor selecionado no contexto
+    localStorage.setItem('selectedServer', serverId);
   };
 
   return (
     <section className='h-full p-2 lg:p-6 text-white/70  drop-shadow-2xl shadow-2xl shadow-shadow'>
-      <div className='relative w-48'>
+      <div className='relative w-52'>
         <div className='pb-8'>
           <DropdownChoose onSelect={handleServerChange} />
         </div>
@@ -33,7 +32,6 @@ const Sidebar = () => {
             activeClassName='active'
             to={{
               pathname: 'AntiBotMembers',
-              state: { selectedServer }
             }}
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
@@ -59,9 +57,9 @@ const Sidebar = () => {
             Staking Setup
           </NavLink>
 
-          <NavLink
+         <NavLink
             activeClassName='active'
-            to='AntiBotMembers'
+            to='erro'
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
             <AiOutlineLogout />
@@ -77,7 +75,7 @@ const Sidebar = () => {
           </NavLink>
           <NavLink
             activeClassName='active'
-            to='AntiBotMembers'
+            to='erro'
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
             <AiFillDatabase />
@@ -86,7 +84,7 @@ const Sidebar = () => {
          
           <NavLink
             activeClassName='active'
-            to='AntiBotMembers'
+            to='erro'
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
             <MdHowToVote />
@@ -95,7 +93,7 @@ const Sidebar = () => {
 
           <NavLink
             activeClassName='active'
-            to='AntiBotMembers'
+            to='erro'
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
             <MdLockOutline />
@@ -103,7 +101,7 @@ const Sidebar = () => {
           </NavLink>
           <NavLink
             activeClassName='active'
-            to='AntiBotMembers'
+            to='erro'
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
             <MdOutlineAccountBalanceWallet />

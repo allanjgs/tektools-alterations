@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { RiArrowDropDownLine } from 'react-icons/ri';
-import { roleList, serverList } from '../TesteData/DataServerList';
-import { useServer } from '../Contexts/ServerContext';
 import AvatarImage from '../../img/AvatarTektools.png';
+import SelectChannel from '../components/SelectChannel';
+import SelectRole from '../components/SelectRole';
+import Switch from '../components/ui/switch';
+import Button from '../components/ui/button';
 
 const AntiBotMembers = () => {
-  // Recebe qual server está selecionado no Context
-  const { selectedServer } = useServer();
-  // Definindo estados para o servidor selecionado e o canal selecionado
-  const [selectedChannel, setSelectedChannel] = useState('');
-  // Filtrando a lista de canais com base no servidor selecionado
-  const filteredChannels = serverList.find(server => server.id === selectedServer)?.channels || [];
-  //Toggle Button para tipo de verificação
-  const [isChecked, setIsChecked] = useState(false)
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked)
+  const [selectChannel, setSelectChannel] = useState('')
+  const inheritSelectChannel = (selectedChannel) => {
+    setSelectChannel(selectedChannel);
   }
+  const [selectRole, setSelectRole] = useState('')
+  const inheritSelectRole = (selectedRole) => {
+    setSelectRole(selectedRole)
+  }
+  const [isChecked, setIsChecked] = useState(false)
+  const handleChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
+
   //data e hora
   const [currentDateTime, setCurrentDateTime] = useState('');
   useEffect(() => {
@@ -29,9 +32,17 @@ const AntiBotMembers = () => {
   const formatNumber = (number) => {
     return number.toString().padStart(2, '0');
   };
+
+
   //button 
-  const saveClick = (event) => {
-    console.log('Save')
+  const saveClick = () => {
+    const infoAntiBotMembers = {
+      serverId: localStorage.getItem('selectedServer'),
+      channelId: selectChannel,
+      roleId: selectRole,
+      captcha: isChecked,
+    }
+    console.log('Save', infoAntiBotMembers)
   }
   return (
     <section className='mx-auto text-white container'>
@@ -42,72 +53,22 @@ const AntiBotMembers = () => {
         <div className='flex flex-col lg:flex-row gap-x-8 justify-between gap-y-4'>
           {/* Dropdown para selecionar o servidor */}
           <div className=' flex flex-col lg:w-1/2'>
-            <span className='pb-1 tracking-tight'>Select channel</span>
-            <div className="relative w-full">
-              <select
-                className="block w-full bg-third border border-white/70 hover:border-white px-4 py-3 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline appearance-none"
-                onChange={(event) => setSelectedChannel(event.target.value)}
-                value={selectedChannel}
-              >
-                <option value="" hidden>Select a channel</option>
-                {filteredChannels.map(channel => (
-                  <option key={channel.id} value={channel.name}>
-                    {channel.name}
-                  </option>
-                ))}
-              </select>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                <RiArrowDropDownLine className="text-white text-4xl" />
-              </div>
-            </div>
+            <SelectChannel onSelectChannel={inheritSelectChannel} />
           </div>
           {/* Dropdown para selecionar o servidor */}
           <div className='t flex flex-col  lg:w-1/2'>
-            <span className='pb-1 tracking-tight'>Select role</span>
-            <div className="relative w-full">
-              <select
-                className="block w-full bg-third border border-white/70 hover:border-white px-4 py-3 rounded-lg shadow leading-tight focus:outline-none focus:shadow-outline appearance-none"
-              >
-                <option value="" hidden>Select a role</option>
-                {roleList.map(role => (
-                  <option key={role.id} value={role.condition}>
-                    {role.condition}
-                  </option>
-                ))}
-              </select>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                <RiArrowDropDownLine className="text-white text-4xl" />
-              </div>
-            </div>
-
+            <SelectRole onSelectRole={inheritSelectRole} />
           </div>
         </div>
         {/* Check box para selecionar tipo de verificação */}
-        <div className='flex flex-row gap-x-10 text-white font-thin text-lg tracking-wide items-center pt-4'>
-          <span>Verification Type</span>
-          <label className='themeSwitcherTwo relative inline-flex cursor-pointer select-none items-center'>
-            <input
-              type='checkbox'
-              checked={isChecked}
-              onChange={handleCheckboxChange}
-              className='sr-only'
-            />
-            <span className='label flex items-center '>
-              Standart
-            </span>
-            <span
-              className={`mx-4 flex h-8 w-[60px] items-center rounded-full p-1 duration-200 ${isChecked ? 'bg-accent' : 'bg-third'
-                }`}
-            >
-              <span
-                className={`h-6 w-6 rounded-full bg-white duration-200 ${isChecked ? 'translate-x-[28px]' : ''
-                  }`}
-              ></span>
-            </span>
-            <span className='label flex items-center  '>
-              Captcha
-            </span>
-          </label>
+        <div className='w-1/2 flex flex-row gap-x-10 text-white font-thin text-lg tracking-wide items-center pt-4'>
+          <Switch
+            span='Verification type'
+            isChecked={isChecked}
+            handleCheckboxChange={handleChange}
+            labelLeft="Standart"
+            labelRight="Captcha"
+          />
         </div>
         {/* Preview inicialmente escondido */}
         <div className='hidden'>
@@ -136,14 +97,7 @@ const AntiBotMembers = () => {
             </div>
           </div>
         </div>
-        {/* Botao de Save */}
-        <div className='flex '>
-          <button
-            onClick={saveClick}
-            className='flex uppercase bg-accent rounded-lg items-center justify-center w-36 h-14 text-center text-base font-bold hover:bg-accentHouver tracking-wide'>
-            Save
-          </button>
-        </div>
+        <Button onClick={saveClick} type='button'>Save</Button>
       </div>
     </section>
   );
