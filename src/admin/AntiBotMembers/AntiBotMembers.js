@@ -36,14 +36,38 @@ const AntiBotMembers = () => {
 
   //button 
   const saveClick = () => {
-    const infoAntiBotMembers = {
-      serverId: localStorage.getItem('selectedServer'),
-      channelId: selectChannel,
-      roleId: selectRole,
-      captcha: isChecked,
+    if (selectChannel && selectRole) {
+      const infoAntiBotMembers = {
+        serverId: localStorage.getItem('selectedServer'),
+        channelId: selectChannel,
+        roleId: selectRole,
+        captcha: isChecked,
+      };
+  
+      fetch('/users/verification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(infoAntiBotMembers),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Response from API:', data);
+          alert('Enviado!');
+          window.location.reload();
+          // setSelectChannel('');
+          // setSelectRole(''); 
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    } else {
+      alert('Por favor, preencha o canal e a role antes de salvar.'); // Adiciona uma mensagem de alerta se os campos não estiverem preenchidos
     }
-    console.log('Save', infoAntiBotMembers)
   }
+
+
   return (
     <section className='mx-auto text-white container'>
       <div className=' flex flex-col gap-y-8 '>
