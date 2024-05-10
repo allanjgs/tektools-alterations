@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header/HeaderAdmin';
+// import Header from '../components/Header/Header';
 import Sidebar from './Sidebar/Sidebar';
 import { HolderVerificationProvider } from './HolderVerification/HolderVerificationContext';
 
@@ -13,7 +14,7 @@ const AdminMain = () => {
         <div className='w-64 '>
           <Sidebar />
           </div>
-          <div className='flex-1 overflow-y-auto pt-8'>
+          <div className=' flex-1 overflow-y-auto pt-8'>
           <Outlet />
         </div>
       </div>

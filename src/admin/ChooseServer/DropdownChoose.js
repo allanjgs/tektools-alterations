@@ -1,15 +1,16 @@
 import React from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import { serverList } from '../TesteData/DataServerList';
 
 
 const DropdownChoose = ({ onSelect }) => {
+  const userDataLocal = JSON.parse(localStorage.getItem('userData'))
+  const selectedServerId = localStorage.getItem('selectedServer');
+
   const handleServerChange = (event) => {
     const selectedServerId = event.target.value;
-    onSelect(selectedServerId); // Passando o id do servidor selecionado para a função onSelect do Sidebar
-    console.log('Selected Server no dropdown:', selectedServerId);
+    onSelect(selectedServerId);
   };
- 
+
   return (
     <div className="relative">
       <select
@@ -17,17 +18,17 @@ const DropdownChoose = ({ onSelect }) => {
         onChange={handleServerChange}
       >
         <option value="" hidden>Select Server</option>
-        {serverList.map((server) => (
-          <option key={server.id} value={server.id}>
+        {userDataLocal && userDataLocal.servers && userDataLocal.servers.map((server) => (
+          <option key={server.id} value={server.id} selected={selectedServerId === null ? server.id === '' : server.id === selectedServerId}>
             {server.name}
           </option>
         ))}
       </select>
-      <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-        <RiArrowDropDownLine className="text-white text-4xl" />
+      <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+        <RiArrowDropDownLine className="text-white text-2xl" />
       </div>
     </div>
-  );
+  )
 };
 
 export default DropdownChoose;

@@ -1,90 +1,92 @@
 import React, { useEffect, useState } from "react";
-import classes from "./Header.module.css";
-import logo from "./../../img/200x60.png";
-import { Link } from "react-router-dom";
-import Profile from "./Profile";
 import { FaDiscord } from "react-icons/fa";
-import axios from "axios";
+import Button from '../../admin/components/ui/button';
+import logo from "./../../img/200x60.png";
+import Profile from "./Profile";
 
 const Header = () => {
-  const [userInfo, setUserInfo] = useState(false);
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')));
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    if (!userInfo) {
-      setUserInfo(null);
-    }
-  }, [userInfo]);
-
-  useEffect(() => {
-    validateDiscordUser();
+    window.addEventListener('scroll', () => {
+      window.scrollY > 60 ? setIsActive(true) : setIsActive(false);
+    });
   });
 
-  const validateDiscordUser = async () => {
-    const fragment = new URLSearchParams(window.location.hash.slice(1));
-    const [accessToken, tokenType] = [
-      fragment.get("access_token"),
-      fragment.get("token_type"),
-    ];
-    console.log(accessToken);
-    let userInfo = {};
-    if (accessToken && !userInfo) {
-      console.log('callind discord api');
+  useEffect(() => {
+    if (!userData) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const code = urlParams.get('code');
 
-      axios
-        .get("https://discord.com/api/users/@me", {
+      if (code) {
+        fetch('/users/auth', {
+          method: 'GET',
           headers: {
-            Authorization: `${tokenType} ${accessToken}`,
-          },
+            'Accept': 'application/json',
+            'Code': code
+          }
         })
-        .then((response) => {
-          console.log(response);
-          setUserInfo(response);
-        })
-        .catch(console.error);
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Erro na resposta da API');
+            }
+            return response.json();
+          })
+          .then(data => {
+            localStorage.setItem('userData', JSON.stringify(data));
+            setUserData(data);
+          })
+          .catch(error => console.error('Erro ao autenticar com a API:', error));
+      } else {
+        console.log("Código não encontrado na URL.");
+      }
     }
+  }, [userData]);
+
+  const handleClick = () => {
+    console.log('clicado')
+    window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&scope=identify+guilds')
   };
 
   return (
-    <div className={classes.header}>
-      <div className={classes.left}>
-        <img src={logo} alt="Log" />
-      </div>
-      <div className={classes.center}>
-        <ul>
-          <Link to={"/"}>
-            <li>
-              <a href="#home">Home</a>
-            </li>
-          </Link>
 
-          <li>
-            <a href="#fatureTop">Features</a>
-          </li>
-          <li>
-            <a href="#pricingTop">Pricing</a>
-          </li>
-          <li>
-            <a href="#faqTop">FAQ</a>
-          </li>
-          <li>
-            <a href="https://verification.TekTools.app/#">Verification</a>
-          </li>
-        </ul>
+    <header className={` w-full transition-all z-30 py-2 ${isActive ? ' fixed  bg-dark/70 ' : ''}`}>
+      <div className="container mx-auto flex flex-row justify-between items-end">
+        <a href="/">
+          <img src={logo} alt="Logo" />
+        </a>
+        {userData ? (
+          <Profile userData={userData} />
+        ) : (
+          <div> 
+            {/* <div className="text-white">
+            <ul className="flex flex-row gap-x-5">
+              <li><a href="/">Home</a></li>
+              <li><a href="#featureTop">Features</a></li>
+              <li><a href="#pricingTop">Pricing</a></li>
+              <li><a href="#faqTop">FAQ</a></li>
+              <li><a href="https://verification.TekTools.app/#">Verification</a></li>
+              <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+          </div> */}
+            <div className="flex flex-row items-center ">
+              <Button
+                onClick={handleClick}
+                type='button'
+                className='capitalize text-white w-auto px-5 gap-x-3'>
+                <FaDiscord className="text-xl" />
+                Login with Discord
+              </Button>
+            </div>
+          </div>
+        )}
+
       </div>
-      {userInfo && <Profile userInfo={userInfo} />}
-      {!userInfo && (
-        <div className={classes.right}>
-          <a 
-          href="/select-server"
-          // href="https://discord.com/api/oauth2/authorize?client_id=1018337890884931654&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=token&scope=identify%20email%20guilds"
-          >
-            <FaDiscord /> &nbsp; Login{" "}
-          </a>
-        </div>
-      )}
-      {/* */}
-    </div>
-  );
-};
+
+    </header>
+  )
+}
+
 
 export default Header;

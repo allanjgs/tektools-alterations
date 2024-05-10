@@ -5,11 +5,12 @@ import avatar from "./../../img/AvatarTektools.png";
 import profile from "./../../img/profile.png";
 import { BiBell } from "react-icons/bi";
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import Header from "../../components/Header/Header";
 
 const HeaderAdmin = () => {
   return (
     <div className='px-28 h-20 flex flow-row justify-between items-center text-white w-full bg-gradient-to-r from-[#000000] via-[#000000] to-[#2C2F48] shadow-md shadow-shadow drop-shadow-xl'>
-      <a href="/" className='flex h-14 gap-x-10'>
+      {/* <a href="/" className='flex h-14 gap-x-10'>
         <img src={avatar} alt="logo" className="" />
         <img src={logo} alt="logo" />
       </a>
@@ -24,7 +25,8 @@ const HeaderAdmin = () => {
             <RiArrowDropDownLine className="text-5xl" />
           </button>
         </div>
-      </div>
+      </div> */}
+      <Header/>
     </div>
   );
 };

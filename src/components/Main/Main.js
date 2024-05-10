@@ -2,15 +2,15 @@ import React from 'react';
 import Faq from "../Faq/Faq";
 import Feature from "../Feature/Feature";
 import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
 import Hero from "../Hero/Hero";
 import Prices from "../prices/Prices";
+import Header from '../Header/Header';
 
 const Main = () => {
    
     return (
         <>
-        <Header />
+        <Header/>
         <Hero />
         <Feature />
         <Prices />
