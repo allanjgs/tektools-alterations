@@ -46,13 +46,13 @@ const Header = () => {
 
   const handleClick = () => {
     console.log('clicado')
-    window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&redirect_uri=https%3A%2F%2Ftektools-alterations.vercel.app%2Fdashboard%2F&scope=identify+guilds')
-    // window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&scope=identify+guilds')
+    //window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&redirect_uri=https%3A%2F%2Ftektools-alterations.vercel.app&scope=identify+guilds')
+    window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&scope=identify+guilds')
   };
   return (
 
-    <header className={` w-full transition-all z-30 py-2 ${isActive ? ' fixed  bg-dark/70 ' : ''}`}>
-      <div className="container mx-auto flex flex-row justify-between items-end">
+    <header className={` w-full transition-all z-30 py-1 ${isActive ? ' fixed  bg-dark ' : ''}`}>
+      <div className=" mx-10 flex flex-row justify-between items-center">
         <a href="/">
           <img src={logo} alt="Logo" />
         </a>
