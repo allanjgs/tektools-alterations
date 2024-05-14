@@ -79,10 +79,10 @@ export default function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-8" aria-label="Global">
         {/* logo aqui */}
         <div className="flex lg:flex-1">
-          <a href="/" className="flex -m-1.5 p-1.5 gap-x-5">
+          <a href="/" className="flex gap-x-5">
             <span className="sr-only">TekTools</span>
-            <img className="lg:h-16 h-8 w-auto" src={avatar} alt="Avatar" />
-            <img className="lg:h-16 h-8 w-auto" src={logo} alt="Tektools" />
+            <img className="lg:h-12 h-8 w-auto" src={avatar} alt="Avatar" />
+            <img className="lg:h-12 h-8 w-auto" src={logo} alt="Tektools" />
           </a>
         </div>
         {/* Menu Desktop and not logged */}

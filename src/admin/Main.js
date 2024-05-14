@@ -2,12 +2,11 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header/HeaderAdmin';
 import Sidebar from './Sidebar/Sidebar';
-import { HolderVerificationProvider } from './HolderVerification/HolderVerificationContext';
+
 
 const AdminMain = () => {
   return (
-    <HolderVerificationProvider>
-    <div className='flex flex-col h-screen bg-bgAdmin bg-fixed bg-auto bg-left'>
+    <div className='flex flex-col h-screen bg-bgAdmin bg-no-repeat bg-fixed bg-cover bg-left'>
       <Header />
       <div className='flex flex-1 overflow-hidden w-full'>
         <div className='w-64 '>
@@ -18,7 +17,7 @@ const AdminMain = () => {
         </div>
       </div>
     </div>
-    </HolderVerificationProvider>
+
   );
 };
 

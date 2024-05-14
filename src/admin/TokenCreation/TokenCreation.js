@@ -1,12 +1,6 @@
 import React, { useState } from 'react'
 import Button from '../components/ui/button'
-import ButtonTokenSymbol from './_components/ButtonTokenSymbol'
 import InputTokenContactsDiscord from './_components/InputTokenContactsDiscord'
-import InputTokenDecimals from './_components/InputTokenDecimals'
-import InputTokenDescription from './_components/InputTokenDescription'
-import InputTokenName from './_components/InputTokenName'
-import InputTokenSymbol from './_components/InputTokenSymbol'
-import InputTokenTotal from './_components/InputTokenTotal'
 import SwitchTokenContact from './_components/SwitchTokenContact'
 import SectionTokenCreation from './SectionTokenCreation'
 
