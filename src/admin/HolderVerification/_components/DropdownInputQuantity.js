@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHolderVerification } from '../HolderVerificationContext';
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import Button from '../../components/ui/button';
 import Input from '../../components/ui/input';
@@ -12,7 +11,8 @@ const optionsRole = [
 ];
 
 const DropdownSelectRole = ({ onAddQuantity }) => {
-  const { selectedRole, setSelectedRole,  selectedQuantityValue, setSelectedQuantityValue } = useHolderVerification();
+  const [selectedRole, setSelectedRole] = useState('');
+  const [selectedQuantityValue, setSelectedQuantityValue] = useState('');
 
   const handleSelectCreator = (event) => {
     setSelectedRole(event.target.value);

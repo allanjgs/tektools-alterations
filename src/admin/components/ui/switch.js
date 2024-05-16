@@ -14,7 +14,7 @@ const Switch = ({ isChecked, handleCheckboxChange, span, labelLeft, labelRight, 
         <span className={`text-xs font-bold  ${isChecked ? '' : ''
           }`}>{labelLeft}</span>
         <span
-          className={`mx-4 flex h-8 w-14 items-center rounded-full p-1 duration-200 ${isChecked ? 'bg-accent' : 'bg-third'
+          className={`mx-4 flex h-8 w-14 items-center rounded-full p-1 duration-200 ${isChecked ? 'bg-accentMain' : 'bg-third'
             }`}
         >
           <span

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useHolderVerification } from '../HolderVerificationContext';
+import React, { useState } from 'react';
 import Dropdown from '../../components/ui/dropdown';
 import Button from '../../components/ui/button';
 
@@ -20,7 +19,9 @@ const optionsTraitRole = [
 ];
 
 const DropdownTrait = ({ onAddTrait }) => {
-  const { selectedRole, setSelectedRole, selectedTraitType, setSelectedTraitType, selectedTraitValue, setSelectedTraitValue } = useHolderVerification(); 
+  const [selectedRole, setSelectedRole] = useState('')
+  const [selectedTraitType, setSelectedTraitType] = useState('')
+  const [selectedTraitValue, setSelectedTraitValue] = useState('')
 
   const handleClickAdd = () => {
     const newTraitInfo = {

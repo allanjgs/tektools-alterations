@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { HolderVerificationProvider } from './HolderVerificationContext';
-import { useHolderVerification } from './HolderVerificationContext';
 import CreatorAddress from './_components/InputCreatorAddress';
 import CollectionName from './_components/InputCollectionName';
 import SelectRole from './_components/DropdownSelectRole';
@@ -21,20 +19,11 @@ const HolderVerification = () => {
   const [showSections, setShowSections] = useState(false);
   const [traits, setTraits] = useState([]);
   const [quantitys, setQuantitys] = useState([]);
-  const {
-    isCheckedSkipRole,
-    setIsCheckedSkipRole,
-    isCheckedHashlist,
-    setIsCheckedHashlist,
-    isCheckedNotificationMinting,
-    setIsCheckedNotificationMinting,
-    isCheckedNotificationSales,
-    setIsCheckedNotificationSales,
-    isCheckedNotificationListing,
-    setIsCheckedNotificationListing,
-  } = useHolderVerification();
-
-
+  const [isCheckedSkipRole, setIsCheckedSkipRole] = useState(false)
+  const [isCheckedHashlist, setIsCheckedHashlist] = useState(false)
+  const [isCheckedNotificationMinting, setIsCheckedNotificationMinting] = useState(false)
+  const [isCheckedNotificationSales, setIsCheckedNotificationSales] = useState(false)
+  const [isCheckedNotificationListing, setIsCheckedNotificationListing] = useState(false)
   const handleAddTrait = (newTraitInfo) => {
     if (!newTraitInfo.type || !newTraitInfo.value || !newTraitInfo.role) {
       alert("Todos os campos da trait devem ser preenchidos.");
@@ -112,7 +101,7 @@ const HolderVerification = () => {
 
 
   return (
-    <HolderVerificationProvider>
+
       <section className='container mx-auto h-full text-white py-5'>
         <div className='flex flex-col'>
           <div>
@@ -187,7 +176,6 @@ const HolderVerification = () => {
           </div>
         </div>
       </section>
-    </HolderVerificationProvider>
   );
 };
 

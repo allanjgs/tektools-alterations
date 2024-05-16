@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { FaCloudUploadAlt, FaTimes } from "react-icons/fa";
+import Button from '../../components/ui/button';
 
 const TokenImage = () => {
   const [backgroundImage, setBackgroundImage] = useState(null);
@@ -32,10 +33,10 @@ const TokenImage = () => {
           </button>
         </div>
       ) : (
-        <button onClick={handleClick} className="flex flex-col items-center justify-center w-52 h-52 border border-dashed bg-transparent hover:border-transparent">
+        <Button onClick={handleClick} className="flex flex-col items-center justify-center w-52 h-52 border border-dashed hover:border-none transition-all duration-300">
           <FaCloudUploadAlt className="text-5xl" />
           Upload your token image
-        </button>
+        </Button>
       )}
       <input
         type="file"
