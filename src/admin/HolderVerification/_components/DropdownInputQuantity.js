@@ -5,7 +5,6 @@ import Input from '../../components/ui/input';
 import SelectRole from '../../components/SelectRole';
 
 
-
 const DropdownSelectRole = ({ onAddQuantity }) => {
   const [selectedQuantityValue, setSelectedQuantityValue] = useState('');
   const [selectRole, setSelectRole] = useState('')
@@ -15,8 +14,9 @@ const DropdownSelectRole = ({ onAddQuantity }) => {
   
   const handleClickAdd = () => {
     const newQuantityInfo = {
-      role: selectRole,
-      nft: selectedQuantityValue
+      roleName: selectRole.name,
+      roleId: selectRole.id,
+      numberOfNfts: selectedQuantityValue
     };
     onAddQuantity(newQuantityInfo);
   };

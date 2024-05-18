@@ -54,10 +54,10 @@ const DropdownTrait = ({ onAddTrait, creatorAddress }) => {
 
   const handleClickAdd = () => {
     const newTraitInfo = {
-      roleName: selectedTraitId,
+      roleName: selectRole.name,
       attributeName: selectedTraitType,
       attributeValue: selectedTraitValue,
-      roleId: selectRole
+      roleId: selectRole.id
     };
     onAddTrait(newTraitInfo);
   };

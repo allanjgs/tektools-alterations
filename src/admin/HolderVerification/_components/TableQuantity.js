@@ -10,7 +10,8 @@ const TableQuantity = ({ quantitys, onClickDel }) => {
       <table className="w-full text-left ">
         <thead className='text-xs bg-third uppercase'>
           <tr>
-            <th scope="col" className="text-center py-2">Role</th>
+            <th scope="col" className="hidden text-center py-2">RoleId</th>
+            <th scope="col" className="text-center py-2">RoleName</th>
             <th scope="col" className="text-center py-2 w-1/5 ">Quantity NFTs</th>
             <th scope="col" className="text-center py-2 "></th>
           </tr>
@@ -18,8 +19,9 @@ const TableQuantity = ({ quantitys, onClickDel }) => {
         <tbody>
           {quantitys.map((quantity, index) => (
             <tr key={index} className='bg-basic hover:bg-third border-second border-t font-light'>
-              <td className='px-3 border-r border-second'>{quantity.role}</td>
-              <td className='px-3 border-r border-second text-center'>{quantity.nft}</td>
+              <td className='hidden px-3 border-r border-second'>{quantity.roleId}</td>
+              <td className='px-3 border-r border-second'>{quantity.roleName}</td>
+              <td className='px-3 border-r border-second text-center'>{quantity.numberOfNfts}</td>
               <td className='w-12 hover:bg-accentHover'>
                 <Button onClick={() => onClickDel(index)} type='button' className='flex w-full text-[35px] font-thin bg-main'>
                   <CgTrash />

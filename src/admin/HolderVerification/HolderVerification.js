@@ -58,13 +58,13 @@ const HolderVerification = () => {
   };
 
   const handleAddQuantity = (newQuantityInfo) => {
-    if (!newQuantityInfo.role || !newQuantityInfo.nft) {
+    if (!newQuantityInfo.roleName || !newQuantityInfo.numberOfNfts) {
       toast.error("Todos os campos devem ser preenchidos.");
       return;
     }
 
     const quantityExists = quantitys.some(quantity =>
-      quantity.role === newQuantityInfo.role
+      quantity.roleName === newQuantityInfo.roleName
     );
     if (!quantityExists) {
       setQuantitys([...quantitys, newQuantityInfo]);
@@ -81,7 +81,7 @@ const HolderVerification = () => {
   };
 
   const handleClickSave = async () => {
-    if (creatorAddress && collectionName && selectRole) {
+    if (creatorAddress && collectionName && selectRole.id) {
       const localStorageKey = `${creatorAddress}`;
       const existingData = localStorage.getItem(localStorageKey);
       if (existingData) {
@@ -91,7 +91,7 @@ const HolderVerification = () => {
         return;
       }
       toast.promise(
-        fetchCollectionData(creatorAddress, collectionName, selectRole, isCheckedHashlist, isCheckedSkipRole, true)
+        fetchCollectionData(creatorAddress, collectionName, selectRole.id, isCheckedHashlist, isCheckedSkipRole, true)
           .then(response => {
             if (!response.ok) {
               throw new Error('Erro na resposta da API');
@@ -119,7 +119,7 @@ const HolderVerification = () => {
     const localStorageKey = `${creatorAddress}`;
     localStorage.removeItem(localStorageKey);
     toast.promise(
-      fetchCollectionData(creatorAddress, collectionName, selectRole, isCheckedHashlist, isCheckedSkipRole)
+      fetchCollectionData(creatorAddress, collectionName, selectRole.id, isCheckedHashlist, isCheckedSkipRole)
         .then(response => {
           if (!response.ok) {
             throw new Error('Erro na resposta da API');
@@ -146,7 +146,7 @@ const HolderVerification = () => {
       creatorsAddress: creatorAddress,
       rolePerAttribute: traits,
       rolePerQty: quantitys,
-      holderRole: selectRole,
+      holderRole: selectRole.id,
       Minting: isCheckedNotificationMinting,
       Sales: isCheckedNotificationSales,
       Listing: isCheckedNotificationListing
@@ -175,7 +175,7 @@ const HolderVerification = () => {
             <div className='flex justify-between items-end gap-x-2 lg:w-1/2'>
               <CreatorAddress value={creatorAddress} onChange={setCreatorAddress} />
               {localStorage.getItem(`${creatorAddress}`) && showSections && (
-                <button onClick={handleRefreshData} className='flex bg-main items-center justify-center w-12 h-12 rounded-lg'>
+                <button onClick={handleRefreshData} className='hidden  bg-main items-center justify-center w-12 h-12 rounded-lg'>
                   <BiRefresh className="text-white font-semibold text-2xl" />
                 </button>
               )}
@@ -201,10 +201,7 @@ const HolderVerification = () => {
             <SelectRole onSelectRole={inheritSelectRole} />
           </div>
         </div>
-
-
-
-
+        
         {/* Define per quantity section  */}
         <div className={`flex flex-col gap-y-5 py-5 ${showSections ? '' : 'hidden'}`}>
           <h2 className='text-2xl font-medium'>Define role per quantity</h2>

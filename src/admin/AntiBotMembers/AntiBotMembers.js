@@ -40,7 +40,7 @@ const AntiBotMembers = () => {
       const infoAntiBotMembers = {
         serverId: localStorage.getItem('selectedServer'),
         channelId: selectChannel,
-        roleId: selectRole,
+        roleId: selectRole.id,
         captcha: isChecked,
       };
   
@@ -62,6 +62,7 @@ const AntiBotMembers = () => {
         .catch(error => {
           console.error('Error:', error);
         });
+        console.log('infoAntiBotMembers', infoAntiBotMembers)
     } else {
       alert('Por favor, preencha o canal e a role antes de salvar.'); // Adiciona uma mensagem de alerta se os campos não estiverem preenchidos
     }
