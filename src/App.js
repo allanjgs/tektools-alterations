@@ -12,15 +12,13 @@ import ChooseMain from "./admin/ChooseServer/Main";
 import HolderVerification from "./admin/HolderVerification/HolderVerification";
 import StakingSetup from "./admin/StakingSetup/StakingSetup";
 import TokenCreation from "./admin/TokenCreation/TokenCreation";
-
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'
 
 function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-
 
   return (
     <div className="App">
@@ -32,12 +30,24 @@ function App() {
           <Route path="antiBotMembers" element={<AntiBotMembers />} />
           <Route path="HolderVerification" element={<HolderVerification />} />
           <Route path="StakingSetup" element={<StakingSetup />} />
-          <Route path="TokenCreation" element={<TokenCreation />} />          
+          <Route path="TokenCreation" element={<TokenCreation />} />
           <Route path="not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/dashboard/not-found" />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        />
     </div>
   );
 }

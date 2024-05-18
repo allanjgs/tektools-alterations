@@ -11,7 +11,6 @@ const SelectRole = ({onSelectRole}) => {
       const data = await response.json()
       setRole(data)
     }
-
     fetchRoles();
   }, []);
 
@@ -20,15 +19,16 @@ const SelectRole = ({onSelectRole}) => {
     setSelectedRole(selectedValue)
     onSelectRole(selectedValue)
   };
-
+  
+  
   const dropdownOptions = role.map(role => ({
     value: role.id,
     label: role.name
   }));
-
+  
   return (
     <div className='flex flex-col w-full gap-y-1'>
-      <span className='px-3 text-base font-thin'>Select Role</span>
+      <span className='px-3 text-base font-bold'>Select Role</span>
       <Dropdown options={dropdownOptions} value={selectedRole} onChange={handleSelectRole} placeholder='Select a role' />
     </div>
   );

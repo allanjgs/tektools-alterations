@@ -74,7 +74,7 @@ export default function Header() {
 
   return (
     <header className={`w-full transition duration-300 z-30 text-white py-5  ${isActive ? ' fixed border-none bg-dark ' : 'border-b border-gray/50'}`}>
-      <nav className="mx-auto flex  items-center justify-between px-4 lg:px-20" aria-label="Global">
+      <nav className="mx-auto flex  items-center justify-between px-5 lg:px-28" aria-label="Global">
         {/* logo aqui */}
         <div className="flex lg:flex-1">
           <a href="/" className="flex gap-x-5">

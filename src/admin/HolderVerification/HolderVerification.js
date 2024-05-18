@@ -1,23 +1,30 @@
+import { BiRefresh } from "react-icons/bi";
 import React, { useState } from 'react';
-import CreatorAddress from './_components/InputCreatorAddress';
-import CollectionName from './_components/InputCollectionName';
-import SelectRole from './_components/DropdownSelectRole';
-import SwitchHashlist from './_components/SwitchHashlist';
-import SwitchSkipRole from './_components/SwitchSkipRole';
+import { toast } from 'react-toastify';
+import SelectRole from '../components/SelectRole';
 import Button from '../components/ui/button';
-import DropdownTrait from './_components/DropdownTrait';
-import DropdownRoleQuantity from './_components/DropdownInputQuantity';
-import SwitchNotification from './_components/SwitchNotification';
-import TableTrait from './_components/TableTrait';
-import TableQuantity from './_components/TableQuantity';
 import ButtonUploadList from './_components/ButtonUploadList';
+import DropdownRoleQuantity from './_components/DropdownInputQuantity';
+import DropdownTrait from './_components/DropdownTrait';
+import CollectionName from './_components/InputCollectionName';
+import CreatorAddress from './_components/InputCreatorAddress';
+import SwitchHashlist from './_components/SwitchHashlist';
+import SwitchNotification from './_components/SwitchNotification';
+import SwitchSkipRole from './_components/SwitchSkipRole';
+import TableQuantity from './_components/TableQuantity';
+import TableTrait from './_components/TableTrait';
+import { fetchCollectionData } from '../../utils/api';
 
 const HolderVerification = () => {
   const [creatorAddress, setCreatorAddress] = useState('');
   const [collectionName, setCollectionName] = useState('');
-  const [selectedRole, setSelectedRole] = useState('');
+  const [selectRole, setSelectRole] = useState('')
+  const inheritSelectRole = (selectedRole) => {
+    setSelectRole(selectedRole)
+  }
   const [showSections, setShowSections] = useState(false);
   const [traits, setTraits] = useState([]);
+  const [dadosApi, setDadosAPI] = useState();
   const [quantitys, setQuantitys] = useState([]);
   const [isCheckedSkipRole, setIsCheckedSkipRole] = useState(false)
   const [isCheckedHashlist, setIsCheckedHashlist] = useState(false)
@@ -25,21 +32,21 @@ const HolderVerification = () => {
   const [isCheckedNotificationSales, setIsCheckedNotificationSales] = useState(false)
   const [isCheckedNotificationListing, setIsCheckedNotificationListing] = useState(false)
   const handleAddTrait = (newTraitInfo) => {
-    if (!newTraitInfo.type || !newTraitInfo.value || !newTraitInfo.role) {
-      alert("Todos os campos da trait devem ser preenchidos.");
+    if (!newTraitInfo.attributeName || !newTraitInfo.attributeValue || !newTraitInfo.roleId) {
+      toast.error("Todos os campos da trait devem ser preenchidos.");
       return;
     }
 
     const traitExists = traits.some(trait =>
-      trait.type === newTraitInfo.type &&
-      trait.value === newTraitInfo.value &&
-      trait.role === newTraitInfo.role
+      trait.attributeName === newTraitInfo.attributeName &&
+      trait.attributeValue === newTraitInfo.attributeValue &&
+      trait.roleId === newTraitInfo.roleId
     );
 
     if (!traitExists) {
       setTraits([...traits, newTraitInfo]);
     } else {
-      alert("A combinação de trait já existe.");
+      toast.error("A combinação de trait já existe.")
     }
   };
 
@@ -52,7 +59,7 @@ const HolderVerification = () => {
 
   const handleAddQuantity = (newQuantityInfo) => {
     if (!newQuantityInfo.role || !newQuantityInfo.nft) {
-      alert("Todos os campos devem ser preenchidos.");
+      toast.error("Todos os campos devem ser preenchidos.");
       return;
     }
 
@@ -62,7 +69,7 @@ const HolderVerification = () => {
     if (!quantityExists) {
       setQuantitys([...quantitys, newQuantityInfo]);
     } else {
-      alert("A combinação já existe.");
+      toast.error("A combinação já existe.");
     }
   };
 
@@ -73,109 +80,174 @@ const HolderVerification = () => {
     }
   };
 
-  const handleClickSave = () => {
-    if (creatorAddress && collectionName && selectedRole) {
-      setShowSections(true); // Mostra as seções se todos os campos estiverem preenchidos
-      // Coletando as informações em um objeto
-      const collectedInfo = {
-        CreatorAddress: creatorAddress,
-        CollectionName: collectionName,
-        IsCheckedHashlist: isCheckedHashlist,
-        IsCheckedSkipRole: isCheckedSkipRole,
-        SelectedRole: selectedRole,
-        Traits: traits,
-        Quantity: quantitys,
-        Minting: isCheckedNotificationMinting,
-        Sales: isCheckedNotificationSales,
-        Listing: isCheckedNotificationListing
-      };
-      console.log(collectedInfo); // Aqui podemos substituir por uma chamada de API ou outra lógica conforme necessário
+  const handleClickSave = async () => {
+    if (creatorAddress && collectionName && selectRole) {
+      const localStorageKey = `${creatorAddress}`;
+      const existingData = localStorage.getItem(localStorageKey);
+      if (existingData) {
+        toast.info("Dados já existem no armazenamento local.");
+        setDadosAPI(JSON.parse(existingData));
+        setShowSections(true);
+        return;
+      }
+      toast.promise(
+        fetchCollectionData(creatorAddress, collectionName, selectRole, isCheckedHashlist, isCheckedSkipRole, true)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Erro na resposta da API');
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('Dados recebidos da API:', data);
+            localStorage.setItem(localStorageKey, JSON.stringify(data));
+            setDadosAPI(data);
+            setShowSections(true);
+          }),
+        {
+          pending: 'Enviando dados...',
+          success: 'Dados enviados com sucesso!',
+          error: 'Erro ao enviar dados!'
+        }
+      );
     } else {
-      alert("Por favor, preencha todos os campos necessários antes de salvar.");
+      toast.error("Por favor, preencha todos os campos necessários antes de salvar.");
     }
   };
 
+  const handleRefreshData = async () => {
+    const localStorageKey = `${creatorAddress}`;
+    localStorage.removeItem(localStorageKey);
+    toast.promise(
+      fetchCollectionData(creatorAddress, collectionName, selectRole, isCheckedHashlist, isCheckedSkipRole)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro na resposta da API');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Dados atualizados recebidos da API:', data);
+          localStorage.setItem(localStorageKey, JSON.stringify(data));
+          setDadosAPI(data);
+          setShowSections(true);
+        }),
+      {
+        pending: 'Atualizando dados...',
+        success: 'Dados atualizados com sucesso!',
+        error: 'Erro ao atualizar dados!'
+      }
+    );
+  };
+
+  const handleClickSaveTrait = () => {
+    const collectedTraits = {
+      guildId: localStorage.getItem('selectedServer'),
+      creatorsAddress: creatorAddress,
+      rolePerAttribute: traits,
+      rolePerQty: quantitys,
+      holderRole: selectRole,
+      Minting: isCheckedNotificationMinting,
+      Sales: isCheckedNotificationSales,
+      Listing: isCheckedNotificationListing
+    }
+    console.log(collectedTraits)
+  }
+
+
   const handleClickCancel = () => {
-    alert('clicou no cancelar')
+    toast.warning('clicou no cancelar')
+    window.location.reload()
   }
 
 
   return (
 
-      <section className='container mx-auto h-full text-white py-5'>
-        <div className='flex flex-col'>
-          <div>
-            <h1 className='text-4xl pb-14 font-bold' >Holder Verification</h1>
-          </div>
-          {/* Collection information section */}
-          <div className='flex flex-col gap-y-5 py-5'>
-            <h2 className='text-2xl font-medium'>Collection information</h2>
-            <div className='flex flex-col lg:flex-row lg:gap-x-5 gap-y-5'>
+    <section className='container mx-auto h-full text-white py-5'>
+      <div className='flex flex-col'>
+        <div>
+          <h1 className='text-4xl pb-14 font-bold' >Holder Verification</h1>
+        </div>
+        {/* Collection information section */}
+        <div className='flex flex-col gap-y-5 py-5'>
+          <h2 className='text-2xl font-medium'>Collection information</h2>
+          <div className='flex flex-col lg:flex-row lg:gap-x-5 gap-y-5'>
+            <div className='flex justify-between items-end gap-x-2 lg:w-1/2'>
               <CreatorAddress value={creatorAddress} onChange={setCreatorAddress} />
-              <CollectionName value={collectionName} onChange={setCollectionName} />
+              {localStorage.getItem(`${creatorAddress}`) && showSections && (
+                <button onClick={handleRefreshData} className='flex bg-main items-center justify-center w-12 h-12 rounded-lg'>
+                  <BiRefresh className="text-white font-semibold text-2xl" />
+                </button>
+              )}
             </div>
-            <div className='flex flex-col lg:flex-row lg:gap-x-10 w-full gap-y-2'>
-              <SwitchHashlist
-                isChecked={isCheckedHashlist}
-                setIsChecked={setIsCheckedHashlist}
-              />
-              <div className='w-px bg-gray'></div>
-              <SwitchSkipRole
-                isChecked={isCheckedSkipRole}
-                setIsChecked={setIsCheckedSkipRole}
-              />
-            </div>
-            <div >
-              {isCheckedHashlist && <ButtonUploadList />}
-            </div>
-            <div className='pb-5'>
-              <SelectRole value={selectedRole} onChange={setSelectedRole} />
-            </div>
+            <CollectionName value={collectionName} onChange={setCollectionName} />
           </div>
+          <div className='flex flex-col lg:flex-row lg:gap-x-10 w-full gap-y-2'>
+            <SwitchHashlist
+              isChecked={isCheckedHashlist}
+              setIsChecked={setIsCheckedHashlist}
+            />
+            <div className='w-px bg-gray'></div>
+            <SwitchSkipRole
+              isChecked={isCheckedSkipRole}
+              setIsChecked={setIsCheckedSkipRole}
+            />
 
-          {/* Define per attribute section  */}
-          <div className={`flex flex-col gap-y-5 py-5 ${showSections ? '' : 'hidden'}`}>
-            <h2 className='text-2xl font-medium'>Define role per attribute</h2>
-            <div className='flex w-full'>
-              <DropdownTrait onAddTrait={handleAddTrait} />
-            </div>
-            <div className='flex justify-center'>
-              <TableTrait traits={traits} onClickDel={handleClickDel} />
-            </div>
           </div>
-
-
-          {/* Define per quantity section  */}
-          <div className={`flex flex-col gap-y-5 py-5 ${showSections ? '' : 'hidden'}`}>
-            <h2 className='text-2xl font-medium'>Define role per quantity</h2>
-            <div className='flex flex-col gap-y-5 lg:flex-row lg:gap-x-5 justify-between w-full'>
-              <DropdownRoleQuantity onAddQuantity={handleAddQuantity} />
-            </div>
-            <div className='flex justify-center'>
-              <TableQuantity quantitys={quantitys} onClickDel={handleClickDelQuantity} />
-            </div>
+          <div >
+            {isCheckedHashlist && <ButtonUploadList />}
           </div>
-          {/* Notification section */}
-          <div className={`flex flex-col pb-10 py-5 ${showSections ? '' : 'hidden'}`}>
-            <h2 className='text-2xl pb-5 font-medium'>Notification</h2>
-            <div className='flex justify-start'>
-              <SwitchNotification
-                isCheckedMinting={isCheckedNotificationMinting}
-                setIsCheckedMinting={setIsCheckedNotificationMinting}
-                isCheckedSales={isCheckedNotificationSales}
-                setIsCheckedSales={setIsCheckedNotificationSales}
-                isCheckedListing={isCheckedNotificationListing}
-                setIsCheckedListing={setIsCheckedNotificationListing} />
-            </div>
-          </div>
-          {/* Button section  */}
-          <hr className="h-px mb-5 bg-gray border-0" />
-          <div className='flex justify-between pb-10'>
-            <Button onClick={handleClickCancel} type='reset' className='w-40 bg-basic border'>Cancelar</Button>
-            <Button onClick={handleClickSave} type='button'>Save</Button>
+          <div className='pb-5 lg:w-1/2'>
+            <SelectRole onSelectRole={inheritSelectRole} />
           </div>
         </div>
-      </section>
+
+
+
+
+        {/* Define per quantity section  */}
+        <div className={`flex flex-col gap-y-5 py-5 ${showSections ? '' : 'hidden'}`}>
+          <h2 className='text-2xl font-medium'>Define role per quantity</h2>
+          <div className='flex flex-col gap-y-5 lg:flex-row lg:gap-x-5 justify-between w-full'>
+            <DropdownRoleQuantity onAddQuantity={handleAddQuantity} creatorAddress={creatorAddress} />
+          </div>
+          <div className='flex justify-center'>
+            <TableQuantity quantitys={quantitys} onClickDel={handleClickDelQuantity} />
+          </div>
+        </div>
+
+        {/* Define per attribute section  */}
+        <div className={`flex flex-col gap-y-5 py-5 ${showSections ? '' : 'hidden'}`}>
+          <h2 className='text-2xl font-medium'>Define role per attribute</h2>
+          <div className='flex w-full'>
+            <DropdownTrait onAddTrait={handleAddTrait} creatorAddress={creatorAddress}/>
+          </div>
+          <div className='flex justify-center'>
+            <TableTrait traits={traits} onClickDel={handleClickDel}  />
+          </div>
+        </div>
+        {/* Notification section */}
+        <div className={`flex flex-col pb-10 py-5 ${showSections ? '' : 'hidden'}`}>
+          <h2 className='text-2xl pb-5 font-medium'>Notification</h2>
+          <div className='flex justify-start'>
+            <SwitchNotification
+              isCheckedMinting={isCheckedNotificationMinting}
+              setIsCheckedMinting={setIsCheckedNotificationMinting}
+              isCheckedSales={isCheckedNotificationSales}
+              setIsCheckedSales={setIsCheckedNotificationSales}
+              isCheckedListing={isCheckedNotificationListing}
+              setIsCheckedListing={setIsCheckedNotificationListing} />
+          </div>
+        </div>
+        {/* Button section  */}
+        <hr className="h-px mb-5 bg-gray border-0" />
+        <div className='flex justify-between pb-10'>
+          <Button onClick={handleClickCancel} type='reset' className='w-40 bg-basic border'>Cancelar</Button>
+          {!showSections ? (<Button onClick={handleClickSave} type='button'>Save</Button>) : (<Button onClick={handleClickSaveTrait} type='button'>SaveTrait</Button>)}
+
+        </div>
+      </div>
+    </section >
   );
 };
 
