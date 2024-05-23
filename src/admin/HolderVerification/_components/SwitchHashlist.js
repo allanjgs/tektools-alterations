@@ -7,13 +7,13 @@ const SwitchHashlist = ({ isChecked, setIsChecked }) => {
   };
 
   return (
-      <Switch
-        span='Hashlist'
-        isChecked={isChecked}
-        handleCheckboxChange={handleChange}
-        labelLeft="NO"
-        labelRight="YES"
-      />
+    <Switch
+      span='Hashlist'
+      isChecked={isChecked}
+      handleCheckboxChange={handleChange}
+      labelLeft="NO"
+      labelRight="YES"
+    />
   );
 };
 export default SwitchHashlist;

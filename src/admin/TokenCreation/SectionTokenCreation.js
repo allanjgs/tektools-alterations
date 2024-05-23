@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonTokenSymbol from './_components/ButtonTokenSymbol'
+import TokenImage from './_components/TokenImage'
 import InputTokenDecimals from './_components/InputTokenDecimals'
 import InputTokenDescription from './_components/InputTokenDescription'
 import InputTokenName from './_components/InputTokenName'
@@ -12,7 +12,7 @@ const SectionTokenCreation = () => {
     <div className='flex flex-col gap-y-5'>
         <div className='flex flex-row gap-4 w-full'>
           <div className='flex items-center'>
-            <ButtonTokenSymbol />
+            <TokenImage />
           </div>
           <div className='flex flex-col w-full justify-center gap-y-5'>
             <div className='flex flex-row'>

@@ -84,7 +84,7 @@ const StakingSetup = () => {
     <section className='container mx-auto h-full text-white py-5'>
       <div className='flex flex-col'>
         <div>
-          <h1 className='text-4xl pb-14 font-bold'>Stalking Setup</h1>
+          <h1 className='text-4xl pb-14 font-bold'>Staking Setup</h1>
         </div>
         {/* Role select */}
         <div className='flex flex-col gap-y-5 py-5'>

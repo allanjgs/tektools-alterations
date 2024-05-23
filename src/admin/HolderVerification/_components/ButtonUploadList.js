@@ -11,11 +11,6 @@ const ButtonUploadList = () => {
     console.log('Arquivo selecionado:', file);
   };
 
-  const handleClick = (file) => {
-    fileInputRef.current.click();
-    console.log('Arquivo selecionado:', file)
-  };
-
   return (
     <>
       <input
@@ -24,7 +19,7 @@ const ButtonUploadList = () => {
         style={{ display: 'none' }}
         onChange={handleFileUpload}
       />
-      <Button onClick={handleClick} type='button' className='flex gap-x-3 w-full gap-y-1 lg:w-1/2 text-xl bg-transparent border hover:border-none transition-all duration-100 hover:border-transparent'>
+      <Button onClick={() => fileInputRef.current.click()} type='button' className='flex gap-x-3 w-full gap-y-1 lg:w-1/2 text-xl bg-transparent border hover:border-none transition-all duration-300 '>
         Upload list
         <FaCloudUploadAlt className="text-3xl" />
       </Button>

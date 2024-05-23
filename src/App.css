@@ -32,3 +32,10 @@ html {
   background: #393D5E !important;
   border-radius: 2px;
 }
+.featureBtn {
+  @apply bg-gradient-to-r from-purple-600 to-green-400 rounded-full text-white font-bold py-0.5 px-0.5 inline-block text-center text-lg cursor-pointer;
+}
+
+.featureBtn span {
+  @apply bg-black py-4 px-2 rounded-full;
+}

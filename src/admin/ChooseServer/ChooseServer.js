@@ -31,7 +31,7 @@ const ChooseServer = () => {
                   <div className='flex justify-center w-full'>
                     <button
                       onClick={() => GoServerChange(servers.id)}
-                      className='uppercase bg-accent rounded-lg items-center justify-center w-full h-12 text-center text-base font-bold hover:bg-accentHouver tracking-wide'>
+                      className='uppercase bg-accentMain rounded-lg items-center justify-center w-full h-12 text-center text-base font-bold hover:bg-accentHouver tracking-wide'>
                       Go
                     </button>
                   </div>
