@@ -6,7 +6,7 @@ import Sidebar from './Sidebar/Sidebar';
 
 const AdminMain = () => {
   return (
-    <div className='flex flex-col h-screen bg-bgAdmin bg-no-repeat bg-fixed bg-cover bg-left'>
+    <div className='flex flex-col h-screen bg-bgAdmin bg-no-repeat bg-fixed bg-cover bg-left font-outfit'>
       <Header />
       <div className='flex flex-1 overflow-hidden w-full'>
         <div className='w-64 '>

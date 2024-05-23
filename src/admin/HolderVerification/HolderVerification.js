@@ -114,7 +114,7 @@ const HolderVerification = () => {
       toast.error("Por favor, preencha todos os campos necessários antes de salvar.");
     }
   };
-
+  //ajustar RefreshData
   const handleRefreshData = async () => {
     const localStorageKey = `${creatorAddress}`;
     localStorage.removeItem(localStorageKey);
@@ -140,25 +140,61 @@ const HolderVerification = () => {
     );
   };
 
-  const handleClickSaveTrait = () => {
+  const handleClickSaveTrait = async () => {
     const collectedTraits = {
       guildId: localStorage.getItem('selectedServer'),
       creatorsAddress: creatorAddress,
       rolePerAttribute: traits,
       rolePerQty: quantitys,
       holderRole: selectRole.id,
-      Minting: isCheckedNotificationMinting,
-      Sales: isCheckedNotificationSales,
-      Listing: isCheckedNotificationListing
-    }
-    console.log(collectedTraits)
-  }
+      minting: isCheckedNotificationMinting,
+      sales: isCheckedNotificationSales,
+      listing: isCheckedNotificationListing
+    };
 
+    const url = '/collections/roles';
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(collectedTraits)
+    };
+    console.log('collectedTraits', collectedTraits)
+    console.log('options', options)
+    toast.promise(
+      fetch(url, options)
+        .then(response => {
+          console.log('Status da Resposta:', response.status); // Log do status
+          console.log('Cabeçalhos da Resposta:', response.headers); // Log dos cabeçalhos
+          if (!response.ok) {
+            throw new Error('Erro na resposta da API');
+          }
+          return response.text();
+        })
+        .then(text => {
+          console.log('Corpo da Resposta:', text); // Log do corpo da resposta
+          return text ? JSON.parse(text) : {};
+        })
+        .then(data => {
+          console.log('Dados enviados com sucesso:', data);
+        }),
+      {
+        pending: 'Enviando dados...',
+        success: 'Dados enviados com sucesso!',
+        error: 'Erro ao enviar dados!'
+      }
+    ).catch(error => {
+      console.error('Erro ao enviar dados para a API:', error);
+      toast.error('Erro ao enviar dados para a API: ' + error.message);
+    });
+  }
 
   const handleClickCancel = () => {
-    toast.warning('clicou no cancelar')
+    toast.warning('Atualizaçes não salvas')
     window.location.reload()
   }
+
 
 
   return (
@@ -201,7 +237,7 @@ const HolderVerification = () => {
             <SelectRole onSelectRole={inheritSelectRole} />
           </div>
         </div>
-        
+
         {/* Define per quantity section  */}
         <div className={`flex flex-col gap-y-5 py-5 ${showSections ? '' : 'hidden'}`}>
           <h2 className='text-2xl font-medium'>Define role per quantity</h2>
@@ -217,10 +253,10 @@ const HolderVerification = () => {
         <div className={`flex flex-col gap-y-5 py-5 ${showSections ? '' : 'hidden'}`}>
           <h2 className='text-2xl font-medium'>Define role per attribute</h2>
           <div className='flex w-full'>
-            <DropdownTrait onAddTrait={handleAddTrait} creatorAddress={creatorAddress}/>
+            <DropdownTrait onAddTrait={handleAddTrait} creatorAddress={creatorAddress} />
           </div>
           <div className='flex justify-center'>
-            <TableTrait traits={traits} onClickDel={handleClickDel}  />
+            <TableTrait traits={traits} onClickDel={handleClickDel} />
           </div>
         </div>
         {/* Notification section */}

@@ -4,6 +4,7 @@ import SelectChannel from '../components/SelectChannel';
 import SelectRole from '../components/SelectRole';
 import Switch from '../components/ui/switch';
 import Button from '../components/ui/button';
+import { toast } from 'react-toastify';
 
 const AntiBotMembers = () => {
   const [selectChannel, setSelectChannel] = useState('')
@@ -54,17 +55,15 @@ const AntiBotMembers = () => {
         .then(response => response.json())
         .then(data => {
           console.log('Response from API:', data);
-          alert('Enviado!');
+          toast.success('Message sent successfully!');
           window.location.reload();
-          // setSelectChannel('');
-          // setSelectRole(''); 
         })
         .catch(error => {
-          console.error('Error:', error);
+          toast.error("Opss, something gone wrong.");
         });
         console.log('infoAntiBotMembers', infoAntiBotMembers)
     } else {
-      alert('Por favor, preencha o canal e a role antes de salvar.'); // Adiciona uma mensagem de alerta se os campos não estiverem preenchidos
+      toast.warning("Ops, review empty fields!");
     }
   }
 
@@ -74,7 +73,7 @@ const AntiBotMembers = () => {
       <div className=' flex flex-col gap-y-8 '>
         <h1 className='font-semibold text-4xl'>Anti bot members</h1>
         <h2 className='font-semibold text-2xl'>User Verification</h2>
-        <p className='font-thin text-lg tracking-wide'>In order to join Toolbox NFTs we need first to verify you are not a bot, please click the verify button to start the verification</p>
+        <p className='font text-lg tracking-wide'>In order to join Toolbox NFTs we need first to verify you are not a bot, please click the verify button to start the verification</p>
         <div className='flex flex-col lg:flex-row gap-x-8 justify-between gap-y-4'>
           {/* Dropdown para selecionar o servidor */}
           <div className=' flex flex-col lg:w-1/2'>
@@ -86,7 +85,7 @@ const AntiBotMembers = () => {
           </div>
         </div>
         {/* Check box para selecionar tipo de verificação */}
-        <div className='w-1/2 flex flex-row gap-x-10 text-white font-thin text-lg tracking-wide items-center pt-4'>
+        <div className='w-1/2 flex flex-row gap-x-10 text-white font text-lg tracking-wide items-center pt-4'>
           <Switch
             span='Verification type'
             isChecked={isChecked}
@@ -105,10 +104,10 @@ const AntiBotMembers = () => {
             <div className='flex flex-col gap-y-3' >
               <div className='flex flex-row items-center text-center gap-x-4 font-semibold'>
                 <h1 className='text-main text-xl'>Tektools</h1>
-                <span className='text-white bg-accent px-1 py-0.5 rounded-md font-extralight text-xs'>BOT</span>
+                <span className='text-white bg-accentMain px-1 py-0.5 rounded-md font-extralight text-xs'>BOT</span>
                 <p className='text-[12px]'>{currentDateTime}</p>
               </div>
-              <div className='bg-basic border-l-4 border-main shadow-sm w-72 p-3 font-light rounded-sm'>
+              <div className='bg-basic border-l-4 border-main shadow-sm w-72 p-3 rounded-sm'>
                 <h2 className='text-2xl mb-2'>
                   User verification
                 </h2>

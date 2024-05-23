@@ -3,6 +3,7 @@ module.exports = {
   theme: {
     container: {
       fontFamily: {
+        'Outfit': ['Outfit', 'sans-serif'],
         'Nunito Sans': ['Nunito', 'sans-serif'],
         'omegle2': ['OMEGLE', 'sans-serif'],
         'Roboto': ['roboto-slab', 'sans-serif'],

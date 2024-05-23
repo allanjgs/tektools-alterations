@@ -24,4 +24,28 @@ export const fetchCollectionData = (creatorAddress, collectionName, selectRole, 
     });
   }
 };
-
+/**
+ * Envia os dados de roles para a coleção via POST para o endpoint /collections/roles.
+ * @param {Object} data - Os dados a serem enviados para o servidor.
+ * @returns {Promise<Response>} A promessa que resolve a resposta da requisição.
+ */
+export const postCollectionRoles = (data) => {
+  return fetch('/collections/roles', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Falha ao enviar dados para a API ');
+    }
+    return response.text().then(text => {
+      return text ? JSON.parse(text) : {};
+    });
+  }).catch(error => {
+    console.error('Erro ao enviar dados para a API:', error);
+    throw error;
+  });
+};

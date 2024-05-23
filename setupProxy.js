@@ -7,6 +7,7 @@ module.exports = function (app) {
     '/roles/{serverId}',
     '/users/verification',
     '/collections/definition',
+    '/collections/roles',
 
     createProxyMiddleware({
       target: 'https://tektools-api-dev.azurewebsites.net',
@@ -16,7 +17,8 @@ module.exports = function (app) {
         '^/channels/{serverId}': '/channels/{serverId}',
         '^/roles/{serverId}': '/roles/{serverId}',
         '^/users/verification': '/users/verification',
-        '^/collections/definition': '/collections/definition'
+        '^/collections/definition': '/collections/definition',
+        '^/collections/roles': '/collections/roles'
       },
       onProxyRes: function (proxyRes, req, res) {
         proxyRes.headers['Access-Control-Allow-Origin'] = '*';
