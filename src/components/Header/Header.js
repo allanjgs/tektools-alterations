@@ -30,6 +30,7 @@ export default function Header() {
     });
   });
   //Link Discord Auth
+  
   const handleClick = () => {
     const authUrl = getDiscordAuthUrl();
     window.location.replace(authUrl);
