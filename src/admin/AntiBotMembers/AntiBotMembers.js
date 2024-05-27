@@ -44,7 +44,6 @@ const AntiBotMembers = () => {
         roleId: selectRole.id,
         captcha: isChecked,
       };
-  
       fetch('/users/verification', {
         method: 'POST',
         headers: {
@@ -66,8 +65,6 @@ const AntiBotMembers = () => {
       toast.warning("Ops, review empty fields!");
     }
   }
-
-
   return (
     <section className='mx-auto text-white container'>
       <div className=' flex flex-col gap-y-8 '>
@@ -126,5 +123,4 @@ const AntiBotMembers = () => {
     </section>
   );
 };
-
 export default AntiBotMembers;

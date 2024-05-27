@@ -75,7 +75,7 @@ const Sidebar = () => {
           </NavLink>
           <NavLink
             activeClassName='active'
-            to='erro'
+            to='DecentralizeStorage'
             className='flex items-center gap-2 py-1 px-2  hover:text-white'
           >
             <AiFillDatabase />
