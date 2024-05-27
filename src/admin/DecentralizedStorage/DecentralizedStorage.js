@@ -15,7 +15,7 @@ const filterOptions = [
   { label: 'Minor', value: 'minor' },
 ];
 
-const sortUploads = (uploads, filter) => {
+const sortUploads = (uploads, filter) => { 
   switch (filter) {
     case 'newest':
       return [...uploads].sort((a, b) => new Date(b.date) - new Date(a.date));

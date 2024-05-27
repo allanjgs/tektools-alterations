@@ -8,6 +8,7 @@ import { ChartPieIcon, CursorArrowRaysIcon, XMarkIcon, } from '@heroicons/react/
 import { IoIosArrowDown } from 'react-icons/io';
 import Button from '../../admin/components/ui/button';
 import { FaDiscord } from 'react-icons/fa';
+import { getDiscordAuthUrl } from '../../alternateBranch';
 
 let selectedServer = localStorage.getItem('selectedServer')
 const products = [
@@ -30,7 +31,10 @@ export default function Header() {
   });
   //Link Discord Auth
   const handleClick = () => {
-    window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&redirect_uri=https%3A%2F%2Ftektools-alterations.vercel.app&scope=identify+guilds')
+development
+    const authUrl = getDiscordAuthUrl();
+    window.location.replace(authUrl);
+    //window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&redirect_uri=https%3A%2F%2Ftektools-alterations.vercel.app&scope=identify+guilds')
     // window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&scope=identify+guilds')
   };
   //API Connection 
