@@ -14,6 +14,7 @@ import StakingSetup from "./admin/StakingSetup/StakingSetup";
 import TokenCreation from "./admin/TokenCreation/TokenCreation";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'
+import DecentralizedStorage from "./admin/DecentralizedStorage/DecentralizedStorage";
 
 function App() {
   useEffect(() => {
@@ -31,6 +32,7 @@ function App() {
           <Route path="HolderVerification" element={<HolderVerification />} />
           <Route path="StakingSetup" element={<StakingSetup />} />
           <Route path="TokenCreation" element={<TokenCreation />} />
+          <Route path="DecentralizeStorage" element={<DecentralizedStorage />} />
           <Route path="not-found" element={<NotFound />} />
           <Route path="*" element={<Navigate to="/dashboard/not-found" />} />
         </Route>
