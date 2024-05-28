@@ -51,17 +51,19 @@ export default function Header() {
             'Code': code
           }
         })
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Erro na resposta da API');
-            }
-            return response.json();
-          })
-          .then(data => {
-            localStorage.setItem('userData', JSON.stringify(data));
-            setUserData(data);
-          })
-          .catch(error => console.error('Erro ao autenticar com a API:', error));
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro na resposta da API');
+          }
+          return response.json();
+        })
+        .then(data => {
+          localStorage.setItem('userData', JSON.stringify(data));
+          setUserData(data);
+        })
+        .catch(error => {
+          console.error('Erro ao autenticar com a API:', error);
+        });
       } else {
         console.log("Código não encontrado na URL.");
       }
