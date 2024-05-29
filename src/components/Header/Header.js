@@ -34,48 +34,48 @@ export default function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  //Link Discord Auth
 
+  //Link Discord Auth
   const handleClick = () => {
     const authUrl = getDiscordAuthUrl();
     window.location.replace(authUrl);
   };
 
-
-   useEffect(() => {
+  //API
+  useEffect(() => {
     console.log('Before API call');
-     const urlParams = new URLSearchParams(window.location.search);
-     const code = urlParams.get('code');
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
 
-     if (code && !userData) {
-       console.log('Entrou na API call');
-      const apiUrl = '/users/auth'; // Endpoint da API
-      const fullUrl = `${process.env.REACT_APP_API_URL}${apiUrl}`; // Constrói a URL completa
-      console.log('Chamando a API em:', fullUrl); // Log da URL completa
+    if (code && !userData) {
+      console.log('Entrou na API call');
+      const apiUrl = `${process.env.REACT_APP_API_URL}/users/auth`;
+      // Constrói a URL completa
+      console.log('Chamando a API em:', apiUrl); // Log da URL completa
 
-       fetch('/users/auth', {
-         method: 'GET',
-         headers: {
-           'Accept': 'application/json',
-           'Code': code
-         }
-       })
-       .then(response => {
-         if (!response.ok) {
-           throw new Error('Erro na resposta da API');
-         }
-         return response.json();
-       })
-       .then(data => {
-         localStorage.setItem('userData', JSON.stringify(data));
-         setUserData(data);
-       })
-       .catch(error => {
-         console.error('Erro ao autenticar com a API:', error);
-       });
-     }
-     console.log('After API call')
-   }, [userData]); // Adiciona 'code' como dependência
+      fetch('/users/auth', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Code': code
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro na resposta da API');
+          }
+          return response.json();
+        })
+        .then(data => {
+          localStorage.setItem('userData', JSON.stringify(data));
+          setUserData(data);
+        })
+        .catch(error => {
+          console.error('Erro ao autenticar com a API:', error);
+        });
+    }
+    console.log('After API call')
+  }, [userData]); // Adiciona 'code' como dependência
 
   const handleAccount = () => {
     console.log('Account Section')
