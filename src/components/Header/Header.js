@@ -48,12 +48,15 @@ export default function Header() {
     const code = urlParams.get('code');
 
     if (code && !userData) {
-      const apiUrl = `${process.env.REACT_APP_API_URL}/users/auth`;
+      let apiUrl;
+      if (process.env.REACT_APP_ENV === 'development') {
+        apiUrl = '/users/auth';
+      } else {
+        apiUrl = `${process.env.REACT_APP_API_URL}/users/auth`;
+      }
       console.log('Chamando a API em:', apiUrl);
-
-      fetch(apiUrl, { // Usa a URL completa
+      fetch(apiUrl, { 
         method: 'GET',
-        mode: 'no-cors',
         headers: {
           'Accept': 'application/json',
           'Code': code,
