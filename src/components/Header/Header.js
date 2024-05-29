@@ -46,33 +46,31 @@ export default function Header() {
     console.log('Before API call');
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
-
+  
     if (code && !userData) {
-      console.log('Entrou na API call');
       const apiUrl = `${process.env.REACT_APP_API_URL}/users/auth`;
-      // Constrói a URL completa
-      console.log('Chamando a API em:', apiUrl); // Log da URL completa
-
-      fetch('/users/auth', {
+      console.log('Chamando a API em:', apiUrl);
+  
+      fetch(apiUrl, { // Usa a URL completa
         method: 'GET',
         headers: {
           'Accept': 'application/json',
           'Code': code
         }
       })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Erro na resposta da API');
-          }
-          return response.json();
-        })
-        .then(data => {
-          localStorage.setItem('userData', JSON.stringify(data));
-          setUserData(data);
-        })
-        .catch(error => {
-          console.error('Erro ao autenticar com a API:', error);
-        });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro na resposta da API');
+        }
+        return response.json();
+      })
+      .then(data => {
+        localStorage.setItem('userData', JSON.stringify(data));
+        setUserData(data);
+      })
+      .catch(error => {
+        console.error('Erro ao autenticar com a API:', error);
+      });
     }
     console.log('After API call')
   }, [userData]); // Adiciona 'code' como dependência
