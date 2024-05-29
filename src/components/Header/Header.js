@@ -19,56 +19,64 @@ const products = [
 ]
 
 export default function Header() {
+  console.log('Header component loaded');
   const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')));
   const [isActive, setIsActive] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
   //Scroll effect
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       window.scrollY > 60 ? setIsActive(true) : setIsActive(false);
-    });
-  });
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   //Link Discord Auth
 
   const handleClick = () => {
     const authUrl = getDiscordAuthUrl();
     window.location.replace(authUrl);
-    //window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&redirect_uri=https%3A%2F%2Ftektools-alterations.vercel.app&scope=identify+guilds')
-    // window.location.replace('https://discord.com/oauth2/authorize?client_id=1018337890884931654&response_type=code&scope=identify+guilds')
   };
-  //API Connection 
-  useEffect(() => {
-    if (!userData) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const code = urlParams.get('code');
 
-      if (code) {
-        fetch('/users/auth', {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Code': code
-          }
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Erro na resposta da API');
-          }
-          return response.json();
-        })
-        .then(data => {
-          localStorage.setItem('userData', JSON.stringify(data));
-          setUserData(data);
-        })
-        .catch(error => {
-          console.error('Erro ao autenticar com a API:', error);
-        });
-      } else {
-        console.log("Código não encontrado na URL.");
-      }
-    }
-  }, [userData]);
+
+   useEffect(() => {
+    console.log('Before API call');
+     const urlParams = new URLSearchParams(window.location.search);
+     const code = urlParams.get('code');
+
+     if (code && !userData) {
+       console.log('Entrou na API call');
+      const apiUrl = '/users/auth'; // Endpoint da API
+      const fullUrl = `${process.env.REACT_APP_API_URL}${apiUrl}`; // Constrói a URL completa
+      console.log('Chamando a API em:', fullUrl); // Log da URL completa
+
+       fetch('/users/auth', {
+         method: 'GET',
+         headers: {
+           'Accept': 'application/json',
+           'Code': code
+         }
+       })
+       .then(response => {
+         if (!response.ok) {
+           throw new Error('Erro na resposta da API');
+         }
+         return response.json();
+       })
+       .then(data => {
+         localStorage.setItem('userData', JSON.stringify(data));
+         setUserData(data);
+       })
+       .catch(error => {
+         console.error('Erro ao autenticar com a API:', error);
+       });
+     }
+     console.log('After API call')
+   }, [userData]); // Adiciona 'code' como dependência
+
   const handleAccount = () => {
     console.log('Account Section')
     window.location.replace('/')

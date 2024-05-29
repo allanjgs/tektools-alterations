@@ -17,9 +17,6 @@ import 'react-toastify/dist/ReactToastify.min.css'
 import DecentralizedStorage from "./admin/DecentralizedStorage/DecentralizedStorage";
 
 function App() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="App">
