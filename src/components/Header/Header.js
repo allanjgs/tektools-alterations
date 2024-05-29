@@ -48,8 +48,8 @@ export default function Header() {
     const code = urlParams.get('code');
   
     if (code && !userData) {
-      const apiUrl = `${process.env.REACT_APP_API_URL}/users/auth`; // Garante que a URL base está sendo usada
-      console.log('Chamando a API em:', apiUrl); // Log da URL completa
+      const apiUrl = `${process.env.REACT_APP_API_URL}/users/auth`;
+      console.log('Chamando a API em:', apiUrl);
   
       fetch(apiUrl, { // Usa a URL completa
         method: 'GET',
