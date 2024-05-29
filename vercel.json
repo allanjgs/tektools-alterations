@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/users/auth",
+      "destination": "https://tektools-api-dev.azurewebsites.net/users/auth"
+    }
+  ]
+}
