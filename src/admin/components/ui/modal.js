@@ -1,4 +1,4 @@
-import { AiOutlineClose } from "react-icons/ai"; 
+import { AiOutlineClose } from "react-icons/ai";
 import React from 'react';
 
 const Modal = ({ isOpen, onClose, children, className }) => {
@@ -7,7 +7,9 @@ const Modal = ({ isOpen, onClose, children, className }) => {
   return (
     <div className={`fixed inset-0 bg-dark bg-opacity-50 flex items-center justify-center z-50 ${className}`}>
       <div className="bg-third rounded-lg p-5">
-        <button onClick={onClose} className="w-full flex mb-5 justify-end"><AiOutlineClose /></button>
+        <button onClick={onClose} className="w-full flex mb-5 justify-end">
+          <AiOutlineClose />
+        </button>
         {children}
       </div>
     </div>

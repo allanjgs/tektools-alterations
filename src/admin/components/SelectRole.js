@@ -20,9 +20,6 @@ const SelectRole = ({ onSelectRole }) => {
     const selectedRole = roles.find(role => role.id === selectedId);
     if (selectedRole) {
       onSelectRole(selectedRole);
-      console.log('Role selecionado:', selectedRole);
-      console.log('Role id selecionado:', selectedRole.id);
-      console.log('Role name selecionado:', selectedRole.name);
     }
   };
 

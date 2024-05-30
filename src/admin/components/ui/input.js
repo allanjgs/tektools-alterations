@@ -1,5 +1,4 @@
 import React from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
 
 const Input = ({ value, onChange, type, placeholder, className, icon: Icon }) => {
   return (

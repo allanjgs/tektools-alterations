@@ -11,7 +11,6 @@ const SelectChannel = ({onSelectChannel}) => {
       const data = await response.json();
       setChannels(data);
     };
-
     fetchChannels();
   }, []);
 
