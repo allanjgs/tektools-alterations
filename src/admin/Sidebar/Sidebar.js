@@ -11,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 import { AiTwotoneUsb } from 'react-icons/ai';
 import { FiUserCheck } from 'react-icons/fi';
 import DropdownChoose from '../ChooseServer/DropdownChoose';
+import Tip from "../components/ui/tip";
 
 
 
@@ -37,8 +38,8 @@ const Sidebar = () => {
           >
             <AiTwotoneUsb />
             Anti Bot Members
+            <Tip tip='Consectetur voluptate veniam sunt magna mollit.' placement='right-end'/>
           </NavLink>
-
           <NavLink
             activeClassName='active'
             to='HolderVerification'
@@ -46,6 +47,7 @@ const Sidebar = () => {
           >
             <FiUserCheck />
             Holder Verification
+            <Tip tip='Nulla excepteur Lorem ex ea commodo fugiat eu amet nisi reprehenderit esse dolor.' placement='right-end'/>
           </NavLink>
 
           <NavLink

@@ -53,14 +53,12 @@ const AntiBotMembers = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log('Response from API:', data);
           toast.success('Message sent successfully!');
           window.location.reload();
         })
         .catch(error => {
           toast.error("Opss, something gone wrong.");
         });
-        console.log('infoAntiBotMembers', infoAntiBotMembers)
     } else {
       toast.warning("Ops, review empty fields!");
     }

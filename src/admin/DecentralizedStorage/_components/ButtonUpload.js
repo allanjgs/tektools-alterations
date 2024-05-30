@@ -6,11 +6,9 @@ function ButtonUpload({ onImageSelected }) {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
-            
             reader.onloadend = () => {
                 onImageSelected(reader.result, file.name);
             };
-
             reader.readAsDataURL(file);
         }
     };

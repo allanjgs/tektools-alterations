@@ -1,7 +1,7 @@
 import React from 'react';
 import AvatarImage from '../../img/AvatarTektools.png';
 
-
+//implementar logica para adesão do plugin no servidor
 const ChooseServer = () => {
   localStorage.setItem('selectedServer', '')
   const userDataLocal = JSON.parse(localStorage.getItem('userData'))
@@ -10,8 +10,6 @@ const ChooseServer = () => {
     localStorage.setItem('selectedServer', serverId);
     window.location.href = '/dashboard'
   }
-
-  console.log('user local é:', userDataLocal)
   return (
     <section className='flex h-full w-full text-white py-10'>
       <div className='container mx-auto'>
@@ -37,7 +35,6 @@ const ChooseServer = () => {
                   </div>
                 </div>
               </div>
-
             ))}
           </div>
         </div>

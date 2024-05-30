@@ -124,8 +124,6 @@ const DecentralizedStorage = () => {
   const filteredUploads = state.uploads.filter(upload =>
     upload.fileName.toLowerCase().includes(state.searchTerm.toLowerCase())
     );
-    
-    console.log('size', filteredUploads )
     return (
       <section className="container mx-auto w-full text-white py-5">
       <div className="flex flex-col">
