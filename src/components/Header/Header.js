@@ -52,7 +52,7 @@ export default function Header() {
       if (process.env.REACT_APP_ENV === 'development') {
         apiUrl = '/users/auth';
       } else {
-        apiUrl = `${process.env.REACT_APP_API_URL}/users/auth`;
+        apiUrl = `${process.env.REACT_APP_API_URL}^/users/auth`;
       }
       console.log('Chamando a API em:', apiUrl);
       fetch(apiUrl, { 
